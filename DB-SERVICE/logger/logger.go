@@ -2,7 +2,7 @@ package logger
 
 import (
 	"github.com/sirupsen/logrus"
-	"main/logger/logger-configurator"
+	logger_configurator "main/logger/logger-configurator"
 )
 
 type globalLoger struct {

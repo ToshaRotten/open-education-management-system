@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"main/grpc-server"
+	"main/grpc_server"
 	. "main/logger"
 )
 
@@ -23,14 +23,8 @@ func main() {
 	logger := New()
 	logger.Configurate(LoggerConfigPath)
 	logger.Log.Info("Starting ...")
-	server := grpc_server.New()
 
-	err := server.Configurate(ServerConfigPath)
-	if err != nil {
-		logger.Log.Error(err)
-	}
-	err = server.Start()
-	if err != nil {
-		logger.Log.Error(err)
-	}
+	var s = &grpc_server.GRPCServer{}
+	s.Configurate(ServerConfigPath)
+	s.Start()
 }
