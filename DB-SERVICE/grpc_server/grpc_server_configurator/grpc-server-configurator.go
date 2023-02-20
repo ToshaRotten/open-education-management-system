@@ -1,4 +1,4 @@
-package grpc_server
+package grpc_server_configurator
 
 import (
 	"gopkg.in/yaml.v3"
