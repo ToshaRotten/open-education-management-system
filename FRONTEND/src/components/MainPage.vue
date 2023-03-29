@@ -53,7 +53,10 @@
               
           </div>
       </div>
+        <div class="alternative-block">
+        </div>
   </div>
+  
 </template>
 <script>
 import userStruct from '../structs/user.js'
