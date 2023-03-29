@@ -1,5 +1,5 @@
 <template>
-    <main class="block" >
+    <main class="block">
 		<a href="index.html">
             <img src="../assets/img/Logotype.png">
         </a>
@@ -14,7 +14,7 @@
 				<label class="text-field__label Rubik" for="password">Пароль</label>
 				<a href="#" class="password-control" :class="{view: isView}" @click="switchVisibility()"></a>
 			</div>
-			<form action="/personal/main.html">
+			<form @click="$router.push('/dashboard')">
 				<button class="btn_login Rubik-Medium" id="submitButton">Войти</button>
 			</form>
 			
@@ -65,4 +65,5 @@ export default {
 <style>
 @import url(../assets/css/login.css);
 @import url(../assets/css/custom-library.css);
+
 </style>

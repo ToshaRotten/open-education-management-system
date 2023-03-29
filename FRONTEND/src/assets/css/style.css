@@ -29,16 +29,18 @@ a {
     clear:both;
     position: relative;
     display:table-cell;
-    height: 1000px;
+    height:100vh;
     background-image: url('../img/back.png');
     background-size: 100%;
+    background-repeat: no-repeat;
     
 }
 .alternative-block {
     background-image: url('../img/main_back.png');
-    background-size: 100%;
+    
     display:table-cell;
     width: 100vw;
+    background-repeat: no-repeat;
 }
 .profile {
     position: relative;
