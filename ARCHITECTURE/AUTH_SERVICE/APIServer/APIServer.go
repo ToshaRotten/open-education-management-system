@@ -2,13 +2,13 @@ package APIServer
 
 import (
 	"encoding/json"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/buffer"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/config"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/database"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/models"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"io/ioutil"
-	"main/APIServer/buffer"
-	"main/APIServer/config"
-	"main/APIServer/database"
-	"main/APIServer/models"
 	"net/http"
 )
 
