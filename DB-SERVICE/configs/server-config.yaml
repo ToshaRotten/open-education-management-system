@@ -1,3 +1,0 @@
-# port must be with a colon
-host: "localhost"
-port: ":8080"
