@@ -1,0 +1,231 @@
+/* Custom css library for custom classes */
+/* Developers: Roman Sviridonov, Anton Kozlov */
+
+/* For all tags */
+
+/*
+Класс, меняющий цвет элемента на установленный в цветовой схеме
+сol1 - apply first color of color scheme
+сol2 - second color
+сol3 - third color
+*/
+
+/*
+Класс, для форматирования кнопки
+btn - Apply default style to button
+*/
+
+/*
+Класс для размера элемента
+fwid - responsible width of element / во всю ширину
+fhei - resp height of elem
+
+wid1 - 10% screen
+...
+wid0 - 100% screen
+
+hei1 - 10% screen
+...
+hei0 - 100% screen
+
+*/
+
+/*
+f - flex
+b - block
+ib - inline block
+*/
+
+/*
+textl - text-align
+textr
+textc
+*/
+
+/*
+Создает стандартныйы бордер
+bord — default style, creates default border
+*/
+
+/*
+Цвет текста
+t-col-b - black
+t-col-w - white
+t-col-1 - red что-то там
+*/
+
+/*
+.d - debug
+*/
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+font-size: 1.25rem;
+
+}
+
+.f{
+display: flex;
+}
+.b{
+display: block;
+}
+.ib{
+display: inline-block;
+}
+.d{
+background-color: red;
+border: 2px solid black;
+}
+
+.e-ali-l{
+justify-content:left;
+}
+.e-ali-r{
+justify-content:right;
+}
+.e-ali-c{
+justify-content:center;
+}
+
+
+.t-size10{font-size: 10px;}.t-size14{font-size: 14px;}.t-size16{font-size: 16px;}.t-size24{font-size: 24px;}.t-size28{font-size: 28px;}.t-size32{font-size: 32px;}.t-size36{font-size: 36px;}.t-size40{font-size: 40px;}.t-size42{font-size: 42px;}.t-size56{font-size: 56px;}.t-size72{font-size: 72px;}
+.t-ali-l{text-align:left;}.t-ali-r{text-align:right;}.t-ali-c{text-align:center;}
+.t-col-1{color:rgb(255,119,142);}.t-col-b{color:rgb(0, 0, 0);}.t-col-w{color:rgb(255, 255, 255);}
+.bg-col-1{background-color:rgb(255,119,142);}.bg-col-2{background-color:rgb(80, 80, 80);}.bg-col-3{background-color:rgb(244, 244, 244);}.bg-col-4{color:rgb(255, 255, 255);}
+.wid1{width:1vw;}.wid5{width:5vw;}.wid10{width:10vw;}.wid20{width:20vw;}.wid30{width:30vw;}.wid40{width:40vw;}.wid50{width:50vw;}.wid60{width:60vw;}.wid70{width:70vw;}.wid80{width:80vw;}.wid90{width:90vw;}.wid100{width:100vw;}.fwid{width:100%;}.hei10{height:10vh;}.hei20{height:20vh;}.hei30{height:30vh;}.hei40{height:40vh;}.hei50{height:50vh;}.hei60{height:60vh;}.hei70{height:70vh;}.hei80{height:80vh;}.hei90{height:90vh;}.hei100{height:100vh;}.fhei{height:100%;}
+
+.btn{
+border: 0px;
+min-width: 50px;
+min-height: 40px;
+border-radius: 5px;
+max-width: 250px;
+max-height: 50px;
+}
+
+.bord{
+border: 1px solid #ced4da;
+}
+
+.inp{
+font-size: 14px;
+color: #6d6d6d;
+border: 1px solid #ced4da;
+min-width: 200px;
+padding: 15px;
+height: 2vh;
+max-width: 250px;
+width: 20vw;
+}
+
+.navbar {
+    float:right;
+}
+.text-1 {
+    font-family: 'Rubik Medium';
+    color: #4D94FF;
+}
+.text-2 {
+    font-family: 'Rubik Light';
+    font-size: 22px;
+    color: #424242;
+}
+.text-3 {
+    font-family: 'Rubik Regular';
+    font-size: 20px;
+    color: #424242;
+}
+.control {
+    top: calc(50%-40px);
+    position: absolute;
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 4px 16px #000b261a;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000b26b8;
+    z-index: 1;
+}
+
+.control_back {
+    left: 10%;
+}
+.control_next {
+    right: 10%;
+}
+
+
+.main_block {
+    position: relative;
+    background: white;
+    box-shadow: 0 4px 16px #000b261a;
+    border-radius: 15px;
+    height: 500px;
+    width: 60%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000b26b8;
+    z-index: 2;
+    margin: auto;
+}
+
+.main_text_block {
+    margin-left: 8%;
+    margin-right: 9%;
+    top:5%;
+    font-size: 30px;
+    position: absolute;
+}
+.text_block {
+    margin-left: 8%;
+    margin-right: 9%;
+}
+
+.Rubik {
+    font-family: 'Rubik Light'
+}
+.Rubik-Regular {
+    font-family: 'Rubik Regular'
+}
+.Rubik-Bold {
+    font-family: 'Rubik Bold'
+}
+.Rubik-Medium {
+    font-family: 'Rubik Medium'
+}
+
+footer {
+    height: 200px;
+    background-color: #9EC5FF;
+    color: white;
+    padding:70px 200px 0px 200px;
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+.first_footer_block{
+    float: left;
+    text-align: center;
+}
+.second_footer_block{
+    float:left;
+    margin-left:200px;
+}
+.third_footer_block{
+    float:right;
+}
+
+
+@import url("../TTCommons/stylesheet.css")
