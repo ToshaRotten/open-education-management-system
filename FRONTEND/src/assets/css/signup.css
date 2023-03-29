@@ -12,6 +12,10 @@
     overflow: auto;
     margin: 0 auto;
 }
+.text-field_floating {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 .terms_block_login {
   background: white;
   box-shadow: 0 4px 16px #000b261a;
@@ -201,10 +205,10 @@ li {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	background: url(/img/svg_icon/view.svg) 0 0 no-repeat;
+	background: url(../img/svg_icon/view.svg) 0 0 no-repeat;
 }
 .password-control.view {
-	background: url(/img/svg_icon/no-view.svg) 0 0 no-repeat;
+	background: url(../img/svg_icon/no-view.svg) 0 0 no-repeat;
 }
 input[type="date"] { 
   background: transparent;

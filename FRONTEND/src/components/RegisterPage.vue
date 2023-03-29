@@ -1,6 +1,6 @@
 <template>
     <main class="block">
-		<a href="index.html"><img src="img/Logotype.png"></a><br>
+		<a href="index.html"><img src="../assets/img/Logotype.png"></a><br>
 		<div class="main_block_login">
 			<p class="Rubik-Medium" style="font-size: 28px;">Регистрация аккаунта</p><br>
 			<div class="text-field text-field_floating">
@@ -89,13 +89,16 @@
 			</div>
 			<div class="third_footer_block">
 				<p class="Rubik-Regular" style="font-size:25px;">Подписаться на новости</p>
-				<img src="img/tg.svg" style="width:150px;">
-				<img src="img/vk.svg" style="width:150px;">
+				<img src="../assets/img/tg.svg" style="width:150px;">
+				<img src="../assets/img/vk.svg" style="width:150px;">
 			</div>
 		</div>
 	</footer>
 </template>
+<script>
+
+</script>
 <style>
-@import url(../assets/css/login.css);
 @import url(../assets/css/custom-library.css);
+@import url(../assets/css/signup.css);
 </style>
