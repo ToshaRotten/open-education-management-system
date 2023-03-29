@@ -1,4 +1,4 @@
-.main_block_login {
+.main_block_register {
     background: white;
     box-shadow: 0 4px 16px #000b261a;
     border-radius: 12px;
@@ -7,7 +7,7 @@
     z-index: 2;
     max-height: 2000px;
     height: 100%;
-    width: 600px;
+    width: 500px;
     max-width: 518px;
     overflow: auto;
     margin: 0 auto;
@@ -194,6 +194,7 @@ li {
 .block {
     text-align: center;
     margin-top: 15vh;
+    margin-bottom: 15vh;
 }
 .password {
 	position: relative;
@@ -203,6 +204,7 @@ li {
 	top: 20px;
 	right: 15px;
 	display: inline-block;
+  cursor: pointer;
 	width: 20px;
 	height: 20px;
 	background: url(../img/svg_icon/view.svg) 0 0 no-repeat;

@@ -14,7 +14,10 @@
 				<label class="text-field__label Rubik" for="password">Пароль</label>
 				<a href="#" class="password-control" :class="{view: isView}" @click="switchVisibility()"></a>
 			</div>
-			<button @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
+            <div class="authButton">
+                <button @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
+            </div>
+			
 			
 		</div>
 		<a href="reset.html"><p class = "p_cl Rubik-Regular" style="margin-bottom:10px;">Я забыл пароль</p></a>
@@ -24,7 +27,7 @@
 <script>
 import Auth from '@/services/auth.service'
 export default {
-  name: 'MainPage',
+  name: 'AuthPage',
   data () {
       return {
         passwordFieldType: "password",
@@ -74,7 +77,8 @@ export default {
 }
 </script>
 <style>
-@import url(../assets/css/login.css);
+
 @import url(../assets/css/custom-library.css);
+@import url(../assets/css/login.css);
 
 </style>

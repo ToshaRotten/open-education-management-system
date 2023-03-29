@@ -59,7 +59,6 @@
   
 </template>
 <script>
-import userStruct from '../structs/user.js'
 export default {
   name: 'MainPage',
   data () {
@@ -70,13 +69,7 @@ export default {
 
   },
   methods: {
-    getUnits: function (){
-        const user = new userStruct('1','2','3','4','5','6',)
-        console.log(user)
-    }
-  },
-  beforeMount() {
-    this.getUnits()
+    
   }
 }
 </script>
