@@ -1,0 +1,81 @@
+header {
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.654);
+    float:left;
+    margin: 0 auto;
+}
+.navigation {
+
+}
+.second-nav {
+    display:inline-block;
+    text-align: center;
+    font-family: 'TT Commons';
+}
+.third-nav {
+    display:inline-block;
+    font-family: 'TT Commons';
+    color:black;
+}
+a {
+    text-decoration: none;
+    color:black;
+}
+.main {
+    display:table;
+}
+.main-block {
+    width:300px;
+    clear:both;
+    position: relative;
+    display:table-cell;
+    height: 1000px;
+    background-image: url('../img/back.png');
+    background-size: 100%;
+    
+}
+.alternative-block {
+    background-image: url('../img/main_back.png');
+    background-size: 100%;
+    display:table-cell;
+    width: 100vw;
+}
+.profile {
+    position: relative;
+    margin-top:30px;
+    text-align: center;
+    color:black;
+    width:100%;
+    font: 25px 'Rubik Regular';
+}
+.modules {
+    height: 100px;
+    margin-top:50px;
+    margin-left: 75px;
+    text-align: left;
+    font: 22px 'TT Commons';
+    font-style: normal;
+}
+.module {
+    margin-bottom: 10px;
+    color:#00000089;
+    cursor: pointer;
+}
+.module-name {
+    font: 22px 'TT Commons';
+}
+.selected-module {
+    font: 22px 'TT Commons';
+    color:black;
+}
+li {
+    list-style-type: none;
+}
+.icon {
+    float:left; 
+    margin-top: -2px; 
+    margin-right: 5px;
+}
+
+@import url("../TTCommons/stylesheet.css");
+@import url("../Rubik/stylesheet.css")
