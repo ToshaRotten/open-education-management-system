@@ -4,11 +4,11 @@
 		<div class="main_block_register">
 			<p class="Rubik-Medium" style="font-size: 28px;">Регистрация аккаунта</p><br>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" type="login" id="login" placeholder="test@test.ru">
+				<input @input="checkReg" v-model="login" class="signup_input text-field__input Rubik-Regular" type="login" id="login" placeholder="test@test.ru">
 				<label class="text-field__label Rubik" for="email">Электронная почта</label>
 			</div><br>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular tel" type="tel" id="tel" placeholder="Номер телефона">
+				<input @input="checkReg" v-model="tel" class="signup_input text-field__input Rubik-Regular tel" type="tel" id="tel" placeholder="Номер телефона">
 				<label class="text-field__label Rubik" for="tel">Номер телефона</label>
 			</div><br>
 			<div class="hint_block Rubik-Regular">
@@ -24,7 +24,7 @@
 				
 			</div>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" :type="passwordFieldType" id="password" placeholder="Пароль">
+				<input @input="checkReg" v-model="password" class="signup_input text-field__input Rubik-Regular" :type="passwordFieldType" id="password" placeholder="Пароль">
 				<label class="text-field__label Rubik" for="password">Пароль</label>
 				<p class="password-control" :class="{view: isView}" @click="switchVisibility()"></p>
 			</div><br>
@@ -35,19 +35,19 @@
 			</div><br>
 			<p class="Rubik-Medium" style="text-align: left; margin-bottom: 20px;">Личные данные</p>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" type="surname" id="surname" placeholder="Фамилия">
+				<input @input="checkReg" v-model="surname" class="signup_input text-field__input Rubik-Regular" type="surname" id="surname" placeholder="Фамилия">
 				<label class="text-field__label Rubik" for="surname">Фамилия</label>
 			</div><br>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" type="name" id="name" placeholder="Имя" >
+				<input @input="checkReg" v-model="name" class="signup_input text-field__input Rubik-Regular" type="name" id="name" placeholder="Имя" >
 				<label class="text-field__label Rubik" for="name">Имя</label>
 			</div><br>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" type="name" id="midname" placeholder="Отчество">
+				<input @input="checkReg" v-model="midname" class="signup_input text-field__input Rubik-Regular" type="name" id="midname" placeholder="Отчество">
 				<label class="text-field__label Rubik" for="name">Отчество</label>
 			</div><br>
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" class="signup_input text-field__input Rubik-Regular" type="date" id="date" placeholder="ДР">
+				<input @input="checkReg" v-model="date" class="signup_input text-field__input Rubik-Regular" type="date" id="date" placeholder="ДР">
 				<label class="text-field__label Rubik" for="date">Дата рождения</label>
 			</div><br>
 		</div><br>
@@ -71,9 +71,7 @@
 				<p class="terms Rubik">Хочу быть в курсе событий: получать новости о работе <a href="#" class="signup_url">сайта</a>, анонсы и приглашения на полезные мероприятия — конференции, семинары, бесплатные вебинары и пр. (информационная и рекламная <a href="#" class="signup_url">рассылка</a>)</p>
 			</div>
 			</div><br>
-			<form action="/personal/main.html">
-				<button class="signup_button Rubik-Medium" id="submitButton" disabled>Зарегистрироваться</button>
-			</form>
+			<button  class="signup_button Rubik-Medium" @click="register" id="submitButton" disabled>Зарегистрироваться</button>
 			
 	</main>
 
@@ -132,13 +130,21 @@ window.addEventListener("DOMContentLoaded", function() {
   });
 
 });
+import router from '@/router';
 import Auth from '../services/auth.service'
 export default {
   name: 'RegisterPage',
   data () {
       return {
         isView: false,
-		passwordFieldType: "password"
+		passwordFieldType: "password",
+		login: '',
+		tel: '',
+		password: '',
+		surname: '',
+		name: '',
+		midname: '',
+		date: '',
       }
   },
   methods: {
@@ -175,7 +181,8 @@ export default {
 		}
 	},
 	register() {
-		Auth.register()
+		Auth.register(this.name, this.surname, this.midname, this.tel, this.login, this.date, "0", this.password)
+		router.push(`/auth`)
 	}
   }
 }

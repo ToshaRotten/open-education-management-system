@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router';
 
 const API_URL = 'http://localhost:5671/user/';
 class AuthService {
@@ -6,29 +7,35 @@ class AuthService {
     return axios
       .post(API_URL + 'auth', {
         firstName: firstName,
-        lastName: '1',
-        thirdName: '1',
-        DOB: '1',
-        role: '1',
         hash: hash
       }, )
       .then(response => {
         console.log(response);
+        
       }).catch(err => {
         console.log(err.response)
+        if (err.response.statusText == "Found") {
+          router.push(`/dashboard`)
+        }
+        else {
+          alert("Неверное имя пользователя или пароль")
+        }
       });
   }
-  register(firstName, hash) {
+  register(firstName, lastName, thirdName, phone, email, DOB, role, hash) {
     return axios.post(API_URL + 'register', {
         firstName: firstName,
-        lastName: '1',
-        thirdName: '1',
-        DOB: '1',
-        role: '1',
+        lastName: lastName,
+        thirdName: thirdName,
+        phone: phone,
+        email: email,
+        DOB: DOB,
+        role: role,
         hash: hash
     },)
     .then(response => {
         console.log(response);
+        
       }).catch(err => {
         console.log(err.response)
       });

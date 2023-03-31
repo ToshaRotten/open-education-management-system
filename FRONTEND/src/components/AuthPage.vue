@@ -56,10 +56,7 @@ export default {
         //this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
     },
     checkAuth() {
-        Auth.login()
-    },
-    checkReg() {
-        Auth.register(this.login, this.pass)
+        Auth.login(this.login, this.pass)
     },
     Prikol() {
         if (this.login != "" && this.pass != "") {
