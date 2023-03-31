@@ -1,4 +1,4 @@
-package group_schedule
+package GroupSchedule
 
 import "main/lesson"
 

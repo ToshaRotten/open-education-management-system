@@ -1,9 +1,9 @@
 package schedule
 
-import "main/group_schedule"
+import "main/GroupSchedule"
 
 type Schedule struct {
-	GroupSchedules []group_schedule.GroupSchedule
+	GroupSchedules []GroupSchedule.GroupSchedule
 }
 
 func New() *Schedule {
