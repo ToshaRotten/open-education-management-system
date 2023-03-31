@@ -2,7 +2,7 @@ package buffer
 
 import (
 	"fmt"
-	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/models"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/UserManager/models"
 )
 
 type Buffer struct {
@@ -42,6 +42,15 @@ func (b *Buffer) Count() int {
 func (b *Buffer) SearchByHash(user models.User) bool {
 	for _, temp := range b.Users {
 		if temp.Hash == user.Hash {
+			return true
+		}
+	}
+	return false
+}
+
+func (b *Buffer) SearchByEmail(user models.User) bool {
+	for _, temp := range b.Users {
+		if temp.Email == user.Email {
 			return true
 		}
 	}
