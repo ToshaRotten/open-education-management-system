@@ -35,12 +35,19 @@
 .login_input{
   width: 100%;
   align-items: center;
-  max-width: 402px;
+  max-width: 400px;
   padding: 29px 0px 11px 11px;
   border-radius: 8px;
   border-style: solid;
   border-color: #a4a4a4;
   border-width: 1px;
+  margin-bottom:25px;
+}
+.Rubik-Medium {
+  margin-bottom: 15px;
+}
+.authButton {
+  text-align:center;
 }
 
 .login_input:hover{
