@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer"
-	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/APIServer/config"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer"
+	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/config"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/sirupsen/logrus"
 )
