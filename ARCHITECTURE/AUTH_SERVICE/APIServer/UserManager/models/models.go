@@ -14,3 +14,11 @@ type User struct {
 type Users struct {
 	Users []User `json:"users"`
 }
+
+func New() *Users {
+	return &Users{nil}
+}
+
+func Validate(UserData User) {
+
+}
