@@ -2,7 +2,7 @@ package buffer
 
 import (
 	"fmt"
-	"github.com/ToshaRotten/open-educaton-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/UserManager/models"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/UserManager/models"
 )
 
 type Buffer struct {
