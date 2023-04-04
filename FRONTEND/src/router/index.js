@@ -8,7 +8,8 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: MainPage
+    component: MainPage,
+    props: true
   },
   {
     path: '/modules',

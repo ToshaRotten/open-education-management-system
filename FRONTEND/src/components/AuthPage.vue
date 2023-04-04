@@ -53,7 +53,6 @@ export default {
             this.passwordFieldType = "password"
             this.isView = false
         }
-        //this.passwordFieldType = this.passwordFieldType === "password" ? "text" : "password";
     },
     checkAuth() {
         Auth.login(this.login, this.pass)
