@@ -1,7 +1,8 @@
-import axios from 'axios';
-import router from '@/router';
+import config from '@/config/config'
+import router from '@/router'
+import axios from 'axios'
 
-const API_URL = 'http://localhost:5671/user/';
+const API_URL = config.apiUrl + config.apiPort + '/user/';
 class AuthService {
   login(firstName, hash) {
     return axios
@@ -11,7 +12,6 @@ class AuthService {
       }, )
       .then(response => {
         console.log(response);
-        
       }).catch(err => {
         console.log(err.response)
         if (err.response.statusText == "Found") {
@@ -38,6 +38,9 @@ class AuthService {
         
       }).catch(err => {
         console.log(err.response)
+        if (err.response.statusText == "") {
+          console.log("t")
+        }
       });
   }
 }

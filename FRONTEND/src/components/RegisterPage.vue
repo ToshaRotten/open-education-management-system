@@ -130,7 +130,6 @@ window.addEventListener("DOMContentLoaded", function() {
   });
 
 });
-import router from '@/router';
 import Auth from '../services/auth.service'
 export default {
   name: 'RegisterPage',
@@ -182,7 +181,6 @@ export default {
 	},
 	register() {
 		Auth.register(this.name, this.surname, this.midname, this.tel, this.login, this.date, "0", this.password)
-		router.push(`/auth`)
 	}
   }
 }
