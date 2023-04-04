@@ -34,3 +34,10 @@ func (l *MEMOLogger) DatabaseLog(msg string) {
 	d1.Printf("TODB")
 	fmt.Printf(" %s \n", msg)
 }
+
+func (l *MEMOLogger) ManagerLog(msg string) {
+	d := color.New(color.FgHiGreen, color.Bold)
+	d.Printf("MANA")
+	fmt.Printf("[0000] ")
+	fmt.Printf(" %s \n", msg)
+}

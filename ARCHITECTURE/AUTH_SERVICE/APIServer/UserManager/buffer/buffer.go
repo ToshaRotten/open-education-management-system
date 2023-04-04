@@ -5,23 +5,24 @@ import (
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/APIServer/UserManager/models"
 )
 
+// Buffer struct used for store users
 type Buffer struct {
 	Users []models.User
 }
 
+// New - returns a pointer to new instance of Buffer
 func New() *Buffer {
 	return &Buffer{
 		Users: nil,
 	}
 }
 
+// Add - Append user to buffer
 func (b *Buffer) Add(user models.User) {
 	b.Users = append(b.Users, user)
 }
 
-func (b *Buffer) Remove(user models.User) {
-}
-
+// Search - search user in buffer, returns true if it is existed
 func (b *Buffer) Search(user models.User) bool {
 	for _, temp := range b.Users {
 		if temp == user {
@@ -31,6 +32,7 @@ func (b *Buffer) Search(user models.User) bool {
 	return false
 }
 
+// Count - returns number of entries
 func (b *Buffer) Count() int {
 	var counter int
 	for counter, _ = range b.Users {
@@ -39,6 +41,7 @@ func (b *Buffer) Count() int {
 	return counter
 }
 
+// SearchByHash - search user by hash, returns true if it is existed
 func (b *Buffer) SearchByHash(user models.User) bool {
 	for _, temp := range b.Users {
 		if temp.Hash == user.Hash {
@@ -48,6 +51,7 @@ func (b *Buffer) SearchByHash(user models.User) bool {
 	return false
 }
 
+// SearchByEmail - search user by email, returns true if it is existed
 func (b *Buffer) SearchByEmail(user models.User) bool {
 	for _, temp := range b.Users {
 		if temp.Email == user.Email {
@@ -57,6 +61,7 @@ func (b *Buffer) SearchByEmail(user models.User) bool {
 	return false
 }
 
+// Replace - replace user in buffer struct
 func (b *Buffer) Replace(user models.User) {
 	for i, temp := range b.Users {
 		if temp.Hash == user.Hash {
@@ -65,6 +70,7 @@ func (b *Buffer) Replace(user models.User) {
 	}
 }
 
+// Print - cli representation of Buffer struct
 func (b *Buffer) Print() {
 	for i := 0; i < 6; i++ {
 		if i == 0 {

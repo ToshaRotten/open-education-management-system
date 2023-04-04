@@ -25,12 +25,12 @@ func New() *UserManager {
 
 // StartSyncProcess - starts a synchronization process, when UserManager send a buffer data to DATABASE_SERVICE
 func (u *UserManager) StartSyncProcess() {
-	//logger nil
+	u.logger.ManagerLog("Starting sync process")
 }
 
 // SetInterval - sets a interval of sending buffer data to database service
-func (u *UserManager) SetInterval() {
-
+func (u *UserManager) SetInterval(minutes int) {
+	u.logger.ManagerLog("Set sync interval")
 }
 
 // RegisterUser - register a new user
@@ -40,10 +40,20 @@ func (u *UserManager) RegisterUser(UserData models.User) {
 }
 
 // AuthUser - auth user
-func (u *UserManager) AuthUser(UserData models.User) {
-
+func (u *UserManager) AuthUser(UserData models.User) bool {
+	if u.buf.SearchByEmail(UserData) {
+		u.logger.CacheLog("Auth user")
+		return true
+	}
+	return false
 }
 
-func (u *UserManager) EditUserProps() {
+func (u *UserManager) EditUserProps(UserData models.User) bool {
+	return false
+}
 
+func (u *UserManager) GetUserList() models.Users {
+	var users models.Users
+	users.Users = u.buf.Users
+	return users
 }
