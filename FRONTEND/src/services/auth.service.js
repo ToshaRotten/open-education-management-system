@@ -11,15 +11,10 @@ class AuthService {
         hash: hash
       }, )
       .then(response => {
+        router.push(`/dashboard`)
         console.log(response);
       }).catch(err => {
         console.log(err.response)
-        if (err.response.statusText == "Found") {
-          router.push(`/dashboard`)
-        }
-        else {
-          alert("Неверное имя пользователя или пароль")
-        }
       });
   }
   register(firstName, lastName, thirdName, phone, email, DOB, role, hash) {
@@ -34,11 +29,15 @@ class AuthService {
         hash: hash
     },)
     .then(response => {
-        console.log(response);
+      if (response.data.accessToken) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+      }
+
+      return response.data;
         
       }).catch(err => {
         console.log(err.response)
-        if (err.response.statusText == "") {
+        if (err.response.statusText == "OK") {
           console.log("t")
         }
       });
