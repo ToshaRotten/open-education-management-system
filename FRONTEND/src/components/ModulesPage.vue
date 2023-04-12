@@ -15,7 +15,7 @@
   </header>
 
   <div class="main">
-      <div class="main-block">
+    <div class="main-block">
           <div class="profile">
               <img src="../assets/img/ava.png">
               <p>Роман Свиридонов</p>
@@ -54,7 +54,76 @@
           </div>
       </div>
       <div class="alternative-block">
+        <div class='chooseText'>
+            <p>Выберите доступный модуль</p>
+        </div>
+        <div>
+            <button class='module_list' v-for='module in modules' :key='module'>
+            {{ module.moduleName }}
+            </button>
+        </div>
           
       </div>
   </div>
 </template>
+<script>
+
+export default {
+    name: 'ModulesPage',
+    data() {
+        return {
+            modules: [
+                {
+                    moduleId: '1',
+                    moduleName: 'Генерация'
+                },
+                {
+                    moduleId: '2',
+                    moduleName: 'Дневник'
+                },
+                {
+                    moduleId: '3',
+                    moduleName: 'Отдел кадров'
+                },
+                {
+                    moduleId: '4',
+                    moduleName: 'Отдел кадров'
+                },
+                {
+                    moduleId: '5',
+                    moduleName: 'Отдел кадров'
+                },
+                {
+                    moduleId: '6',
+                    moduleName: 'Отдел кадров'
+                },
+            ]
+        }
+    },
+
+}
+
+</script>
+<style>
+.module_list {
+    border-radius: 30px;
+    border-width: 0px;
+    border-color: black;
+    filter: drop-shadow(0px 0px 3px black);
+    font-size: 20px;
+    background-color: #FFFFFF;
+    width: 15em;
+    height: 3em;
+    margin-inline: 25px;
+    margin-bottom: 2em;
+}
+.chooseText {
+    height:100%;
+    width:100%;
+    margin-bottom: 2em;
+    color: black;
+    font-family: 'TT Commons';
+    font-size:24px;
+}
+
+</style>
