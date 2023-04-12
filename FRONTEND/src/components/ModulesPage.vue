@@ -95,7 +95,7 @@ export default {
                 },
                 {
                     moduleId: '6',
-                    moduleName: 'Отдел кадров'
+                    moduleName: 'Отдел кадрыыыыыыыыы'
                 },
             ]
         }
