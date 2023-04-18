@@ -15,10 +15,10 @@ const options = reactive({
 	initialView: 'dayGridMonth',
 	editable: true,
 	selectable: true,
-	weekends: true,
-	select: (arg) => {
+	weekends: true
+	// select: (arg) => {
 		
-	}
+	// }
 })
 
 </script>

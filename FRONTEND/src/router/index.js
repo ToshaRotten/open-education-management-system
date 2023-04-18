@@ -4,12 +4,18 @@ import IndexPage from '../components/IndexPage'
 import MainPage from '../components/MainPage'
 import ModulesPage from '../components/ModulesPage'
 import RegisterPage from '../components/RegisterPage'
+import SchedulePage from '../components/modules/SchedulePage'
 
 const routes = [
   {
     path: '/',
     name: 'index',
     component: IndexPage
+  },
+  {
+    path: '/sch',
+    name: 'schedule',
+    component: SchedulePage
   },
   {
     path: '/dashboard',

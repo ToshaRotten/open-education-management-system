@@ -6,7 +6,7 @@
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <path d="M13 12v.01m-10 8.99h18m-16 0v-16a2 2 0 0 1 2 -2h7.5m2.5 10.5v7.5m-3 -14h7m-3 -3l3 3l-3 3"></path>
                </svg>
-              <a class="" href="../auth.html">Выйти</a>
+              <a class="" @click="$router.push('/auth')">Выйти</a>
           </div>
           <div class="second-nav">
               <p class="" style="font-size:26px;">Главная</p>
@@ -54,16 +54,21 @@
           </div>
       </div>
         <div class="alternative-block">
+            <SchedulePage/>
         </div>
   </div>
   
 </template>
 <script>
+import SchedulePage from './modules/SchedulePage.vue'
 export default {
   name: 'MainPage',
   data () {
       return {
       }
+  },
+  components: {
+    'SchedulePage': SchedulePage
   },
   computed() {
 
