@@ -1,6 +1,8 @@
 <template>
 	<main class="block">
-		<a href="index.html"><img src="../assets/img/Logotype.png" /></a><br />
+		<a @click="$router.push('/')">
+			<img src="../assets/img/Logotype.png" />
+		</a><br />
 		<div class="main_block_register">
 			<p class="Rubik-Medium" style="font-size: 28px">Регистрация аккаунта</p>
 			<br />
@@ -109,17 +111,17 @@
 	<footer>
 		<div class="footer_block">
 			<div class="first_footer_block">
-				<p class="Rubik-Regular" style="font-size: 25px">Наши контакты</p>
-				<p class="Rubik-Medium" style="font-size: 40px">8 800 111-11-11</p>
-				<p class="Rubik">По общим вопросам (в будни с<br />7:00 до 18:00 по московскому времени)</p>
+				<p class="Rubik-Regular" style="font-size: 25px; color: white;">Наши контакты</p>
+				<p class="Rubik-Medium" style="font-size: 40px; color: white;">8 800 111-11-11</p>
+				<p class="Rubik" style="color: white;">По общим вопросам (в будни с<br />7:00 до 18:00 по московскому времени)</p>
 			</div>
 			<div class="second_footer_block">
-				<p class="Rubik-Medium" style="font-size: 40px">help@romanton.ru</p>
+				<p class="Rubik-Medium" style="font-size: 40px; color: white;">help@romanton.ru</p>
 			</div>
 			<div class="third_footer_block">
-				<p class="Rubik-Regular" style="font-size: 25px">Подписаться на новости</p>
-				<img src="../assets/img/tg.svg" style="width: 150px" />
-				<img src="../assets/img/vk.svg" style="width: 150px" />
+				<p class="Rubik-Regular" style="font-size: 25px; color: white;">Подписаться на новости</p>
+				<img src="../assets/img/tg.svg" style="width: 150px; color: white;" />
+				<img src="../assets/img/vk.svg" style="width: 150px; color: white;" />
 			</div>
 		</div>
 	</footer>
@@ -216,6 +218,12 @@ export default {
 }
 </script>
 <style>
+* {
+	box-sizing:content-box;
+}
+footer {
+	color: white;
+}
 @import url(../assets/css/custom-library.css);
 @import url(../assets/css/signup.css);
 </style>

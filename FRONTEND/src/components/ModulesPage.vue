@@ -75,7 +75,7 @@ export default {
             modules: [
                 {
                     moduleId: '1',
-                    moduleName: 'Генерация'
+                    moduleName: 'Расписание'
                 },
                 {
                     moduleId: '2',
@@ -84,18 +84,6 @@ export default {
                 {
                     moduleId: '3',
                     moduleName: 'Отдел кадров'
-                },
-                {
-                    moduleId: '4',
-                    moduleName: 'Отдел кадров'
-                },
-                {
-                    moduleId: '5',
-                    moduleName: 'Отдел кадров'
-                },
-                {
-                    moduleId: '6',
-                    moduleName: 'Отдел кадрыыыыыыыыы'
                 },
             ]
         }

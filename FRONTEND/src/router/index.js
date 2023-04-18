@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import AuthPage from '../components/AuthPage'
+import IndexPage from '../components/IndexPage'
 import MainPage from '../components/MainPage'
 import ModulesPage from '../components/ModulesPage'
-import AuthPage from '../components/AuthPage'
 import RegisterPage from '../components/RegisterPage'
 
 const routes = [
+  {
+    path: '/',
+    name: 'index',
+    component: IndexPage
+  },
   {
     path: '/dashboard',
     name: 'dashboard',

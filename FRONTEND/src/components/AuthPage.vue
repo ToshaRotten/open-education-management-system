@@ -1,6 +1,6 @@
 <template>
 	<main class="block">
-		<a href="index.html">
+		<a @click="$router.push('/')">
 			<img src="../assets/img/Logotype.png" />
 		</a>
 		<div class="main_block_login">
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<a href="reset.html"><p class="p_cl Rubik-Regular" style="margin-bottom: 10px">Я забыл пароль</p></a>
-		<a @click="checkReg"><p class="p_cl Rubik-Regular">У меня нет аккаунта</p></a>
+		<a @click="$router.push('/register')" ><p class="p_cl Rubik-Regular">У меня нет аккаунта</p></a>
 	</main>
 </template>
 <script>
@@ -73,6 +73,9 @@ export default {
 }
 </script>
 <style>
+a {
+	cursor: pointer;
+}
 @import url(../assets/css/custom-library.css);
 @import url(../assets/css/login.css);
 </style>
