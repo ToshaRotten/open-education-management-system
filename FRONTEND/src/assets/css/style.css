@@ -5,7 +5,7 @@ header {
     margin: 0 auto;
 }
 .navigation {
-
+    
 }
 .second-nav {
     display:inline-block;
@@ -37,7 +37,6 @@ a {
 }
 .alternative-block {
     background-image: url('../img/main_back.png');
-    
     display:table-cell;
     width: 100vw;
     background-repeat: no-repeat;

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Слайдер для сайта от Itchief</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
+      color: #fff;
+      height: 3000px;
+    }
+  </style>
+  <link rel="stylesheet" href="chief-slider.css">
+  <style>
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .slider__container {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .slider__item {
+      /*flex: 0 0 33.3333333333%;
+      max-width: 33.3333333333%;*/
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .slider__item {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    /*@media (min-width: 992px) {
+      .slider__item {
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .slider__item {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }*/
+
+    .slider__item-container {
+      line-height: 250px;
+      font-size: 100px;
+      text-align: center;
+      height: 250px;
+    }
+
+    .slider__item:nth-child(1) .slider__item-content {
+      background-color: #f44336;
+    }
+
+    .slider__item:nth-child(2) .slider__item-content {
+      background-color: #9c27b0;
+    }
+
+    .slider__item:nth-child(3) .slider__item-content {
+      background-color: #3f51b5;
+    }
+
+    .slider__item:nth-child(4) .slider__item-content {
+      background-color: #03a9f4;
+    }
+
+    .slider__item:nth-child(5) .slider__item-content {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="slider" data-slider="chiefslider" data-infinite="false" data-autoplay="false">
+
+      <div class="slider__container">
+        <div class="slider__wrapper">
+          <div class="slider__items">
+            <div class="slider__item">
+              <div class="slider__item-container">
+                <div class="slider__item-content">1</div>
+              </div>
+            </div>
+            <div class="slider__item">
+              <div class="slider__item-container">
+                <div class="slider__item-content">2</div>
+              </div>
+            </div>
+            <div class="slider__item">
+              <div class="slider__item-container">
+                <div class="slider__item-content">3</div>
+              </div>
+            </div>
+            <div class="slider__item">
+              <div class="slider__item-container">
+                <div class="slider__item-content">4</div>
+              </div>
+            </div>
+            <div class="slider__item">
+              <div class="slider__item-container">
+                <div class="slider__item-content">5</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="slider__control" data-slide="prev"></a>
+      <a href="#" class="slider__control" data-slide="next"></a>
+      <ol class="slider__indicators">
+        <li data-slide-to="0"></li>
+        <li data-slide-to="1"></li>
+        <li data-slide-to="2"></li>
+        <li data-slide-to="3"></li>
+        <li data-slide-to="4"></li>
+      </ol>
+    </div>
+
+  </div>
+
+  <script src="chief-slider.js"></script>
+  <!--script src="slider_es5.js"></script-->
+  <script>
+    //const slider1 = new SliderByItchief(document.querySelector('.slider'));
+    /*const slider1 = new SliderByItchief(document.querySelector('.slider'), {
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      slidesToShow: 3, // по умолчанию
+    });*/
+  </script>
+
+</body>
+
+</html>

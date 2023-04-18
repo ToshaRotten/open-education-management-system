@@ -1,0 +1,117 @@
+.main_block_login {
+    background: white;
+    box-shadow: 0 4px 16px #000b261a;
+    border-radius: 12px;
+    padding: 40px;
+    color: #000b26b8;
+    z-index: 2;
+    max-height: 400px;
+    width: 416px;
+    max-width: 500px;
+    overflow: auto;
+    margin: 0 auto;
+}
+.password {
+	position: relative;
+}
+.password-control {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(/img/svg_icon/view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+	background: url(/img/svg_icon/no-view.svg) 0 0 no-repeat;
+}
+.block {
+    text-align: center;
+    margin-bottom: -100px;
+    margin-top: 15vh;
+}
+.login_input{
+  width: 100%;
+  align-items: center;
+  max-width: 402px;
+  padding: 29px 0px 11px 11px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #a4a4a4;
+  border-width: 1px;
+}
+
+.login_input:hover{
+    border-color:black;
+    transition: 0.5s;
+}
+.login_input:not(:hover){
+    transition:0.5s;
+}
+.login_input:focus {
+    outline: none;
+    
+    border: 1px solid #62beff;
+}
+.text-field_floating {
+    position: relative;
+  }
+  .text-field_floating .text-field__input {
+    line-height: 1.25;
+    
+  }
+  .text-field_floating input{
+    height:14px;
+    font-size: 14px;
+  }
+  .text-field_floating .text-field__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 17px;
+    height: 100%;
+    opacity: .65;
+    padding: 1rem .75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+  }
+  .text-field_floating .text-field__input::-moz-placeholder {
+    color: transparent;
+  }
+  .text-field_floating .text-field__input::placeholder {
+    color: transparent;
+  }
+  .text-field_floating .text-field__input:focus,
+  .text-field_floating .text-field__input:not(:placeholder-shown) {
+    
+  }
+  .text-field_floating .text-field__input:focus~.text-field__label,
+  .text-field_floating .text-field__input:not(:placeholder-shown)~.text-field__label {
+    opacity: .65;
+    transform: scale(.70) translateY(-.15rem) translateX(.15rem);
+  }
+
+.btn_login{
+    width:100%;
+    height: 56px;
+    border-radius: 8px;
+    background-color: #B5CEFF;
+    color: white;
+    font-size: 16px;
+    border: 0px;
+}
+a {
+    text-decoration: none;
+}
+.p_cl {
+    text-align:center;
+    font-size: 14px;
+    color: #5C94FF;
+    margin-bottom: -14px;
+    
+    outline: none;
+}
+  
