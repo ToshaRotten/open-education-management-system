@@ -6,7 +6,7 @@ const API_URL = config.apiUrl + config.apiPort + '/user/'
 class AuthService {
 	login(firstName, hash) {
 		return axios
-			.post(API_URL + 'auth', {
+			.post(API_URL + 'read', {
 				firstName: firstName,
 				hash: hash,
 			})
@@ -20,8 +20,9 @@ class AuthService {
 			})
 	}
 	register(firstName, lastName, thirdName, phone, email, DOB, role, hash) {
-		return axios
-			.post(API_URL + 'register', {
+		
+		let users = {users:[
+			{
 				firstName: firstName,
 				lastName: lastName,
 				thirdName: thirdName,
@@ -29,8 +30,11 @@ class AuthService {
 				email: email,
 				DOB: DOB,
 				role: role,
-				hash: hash,
-			})
+				hash: hash
+			}
+		]}
+		return axios
+			.post(API_URL + 'create', users)
 			.then(() => {})
 			.catch(err => {
 				console.log(err.response)
