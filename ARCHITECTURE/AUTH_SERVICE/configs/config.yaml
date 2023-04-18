@@ -1,2 +1,2 @@
   host: "localhost"
-  port: ":5671"
+  port: ":8080"
