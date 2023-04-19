@@ -18,8 +18,8 @@
     <div class="main-block">
           <div class="profile">
               <img src="../assets/img/ava.png">
-              <p>Роман Свиридонов</p>
-              <p style="font-size:17px;">Ученик</p>
+              <p>{{ firstName }} {{ lastName }}</p>
+              <p style="font-size:17px;"> {{ role }}</p>
           </div>
           <div class="modules">
               <div class="module" @click="$router.push('/dashboard')">
@@ -72,6 +72,9 @@ export default {
     name: 'ModulesPage',
     data() {
         return {
+            firstName: this.$store.getters.loadData.firstName,
+            lastName: this.$store.getters.loadData.lastName,
+            role: this.$store.getters.loadData.role,
             modules: [
                 {
                     moduleId: '1',

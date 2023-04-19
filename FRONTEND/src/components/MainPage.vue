@@ -18,8 +18,8 @@
       <div class="main-block">
           <div class="profile">
               <img src="../assets/img/ava.png">
-              <p>Роман Свиридонов</p>
-              <p style="font-size:17px;">Ученик</p>
+              <p>{{ firstName }} {{ lastName }}</p>
+              <p style="font-size:17px;">{{ role }}</p>
           </div>
           <div class="modules">
               <div class="module selected-module">
@@ -65,16 +65,25 @@ export default {
   name: 'MainPage',
   data () {
       return {
+        firstName: '',
+        lastName: '',
+        role: this.$store.getters.loadData.role
       }
   },
   components: {
     'SchedulePage': SchedulePage
   },
-  computed() {
-
+  computed: {
+    LoadData() {
+        return this.$store.getters.loadData
+    }
   },
   methods: {
     
+  },
+  created: function(){
+        this.firstName = this.LoadData.firstName
+        this.lastName = this.LoadData.lastName
   }
 }
 </script>

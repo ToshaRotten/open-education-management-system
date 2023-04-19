@@ -1,4 +1,5 @@
 import config from '@/config/config'
+import router from '@/router'
 import axios from 'axios'
 import Vuex from 'vuex'
 const API_URL = config.apiUrl + config.apiPort
@@ -16,6 +17,7 @@ export default new Vuex.Store({
 		auth_success(state, {token, user}) {
 			state.status = 'success'
 			state.token = token
+			// state.user = user
 			state.user = user
 		},
 		auth_error(state) {
@@ -41,6 +43,7 @@ export default new Vuex.Store({
 						commit('auth_success', {token, user})
 						console.log(this.state)
 						resolve(resp)
+						router.push('/dashboard')
 					})
 					.catch(err => {
 						commit('auth_error')
@@ -50,5 +53,9 @@ export default new Vuex.Store({
 			})
 		},
 	},
-	getters: {},
+	getters: {
+		loadData(state) {
+			return state.user
+		}
+	},
 })

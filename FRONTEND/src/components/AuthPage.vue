@@ -6,7 +6,7 @@
 		<div class="main_block_login">
 			<p class="Rubik-Medium" style="font-size: 28px">
 				Вход по логину<br />
-				и паролю
+				и паролю {{ this.$store.state.user.firstName }}
 			</p>
 			<div class="text-field text-field_floating">
 				<input v-model="login" @input="Prikol" class="login_input text-field__input Rubik-Regular" type="login" id="login" placeholder="test@test.ru" />
@@ -72,6 +72,9 @@ export default {
 			}
 		},
 	},
+	created: function() {
+		console.log(this.$store.user)
+	}
 }
 </script>
 <style>

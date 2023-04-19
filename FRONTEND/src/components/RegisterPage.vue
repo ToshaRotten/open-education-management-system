@@ -12,7 +12,7 @@
 			</div>
 			<br />
 			<div class="text-field text-field_floating">
-				<input @input="checkReg" v-model="tel" class="signup_input text-field__input Rubik-Regular tel" type="tel" id="tel" placeholder="Номер телефона" />
+				<input @input="checkReg" v-model="tel" class="signup_input text-field__input Rubik-Regular tel" type="tel" id="tel" maxlength="17" placeholder="Номер телефона" />
 				<label class="text-field__label Rubik" for="tel">Номер телефона</label>
 			</div>
 			<br />
