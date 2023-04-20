@@ -10,24 +10,25 @@
 	</div>
 
 	<div style="position: relative;">
-		<FullCalendar id="elem1" :options="options"/>
+		<FullCalendar ref="fullCalendar" id="elem1" :options="options"/>
+
 		<template id="elem2">
 			<v-row justify="center">
 				<v-dialog
 						v-model="edit"
 						persistent
 						width="600"
-						height="512"
+						height="650"
 				>
 					<template v-slot:activator="{ props }">
 						<v-btn
 								color="primary"
 								v-bind="props"
 						>
-							Open Dialog
+							Открыть
 						</v-btn>
 					</template>
-					<v-card>
+					<v-card class="rounded-card">
 						<v-card-title>
 							<span class="text-h5">Редактирование урока</span>
 						</v-card-title>
@@ -36,33 +37,64 @@
 								<v-row>
 									<v-col
 											cols="12"
-											sm="6"
-											md="4"
+											sm="12"
+											md="10"
 									>
-										<v-text-field
-												label="Название"
+										<p class="lesson_info">Название урока</p>
+										<input
+												type="text"
+												v-model="eventTitle"
+												placeholder="Введите название урока"
 												required
-										></v-text-field>
+										>
+										<select style="width:100%;" v-model="eventTitle">
+											<option v-for="lesson in lessons" :key="lesson"> {{lesson.title}}</option>
+										</select>
+									</v-col>
+
+									<v-col
+											cols="12"
+											sm="6"
+											md="10"
+									>
+										<p class="lesson_info">Описание урока</p>
+										<input
+												v-model="eventDescription"
+												placeholder="Здесь находится описание занятия"
+										>
 									</v-col>
 									<v-col
 											cols="12"
 											sm="6"
-											md="4"
+											md="10"
 									>
-										<v-text-field
-												label="Описание"
-												hint="example of helper text only on focus"
-										></v-text-field>
+										<p class="lesson_info">Начало урока</p>
+										<input
+												type="datetime-local"
+												v-model="eventStart">
 									</v-col>
 									<v-col
 											cols="12"
 											sm="6"
+											md="10"
 									>
-										<v-datetime-picker label="Select Datetime" v-model="datetime"> </v-datetime-picker>
+										<p class="lesson_info">Конец урока</p>
+										<input
+												type="datetime-local"
+												v-model="eventEnd">
+									</v-col>
+									<v-col
+											cols="12"
+											sm="6"
+											md="10"
+									>
+										<p class="lesson_info">Выбор цвета</p>
+										<input
+												type="color"
+												v-model="eventColor">
 									</v-col>
 								</v-row>
 							</v-container>
-							<small>*indicates required field</small>
 						</v-card-text>
 						<v-card-actions>
 							<v-spacer></v-spacer>
@@ -71,14 +103,20 @@
 									variant="text"
 									@click="edit = false"
 							>
-								Close
+								Закрыть
 							</v-btn>
 							<v-btn
 									color="blue-darken-1"
 									variant="text"
-									@click="edit = false"
+									@click="changeEventData"
 							>
 								Сохранить
+							</v-btn>
+							<v-btn
+									color="red"
+									@click="deleteEvent"
+							>
+								Удалить
 							</v-btn>
 						</v-card-actions>
 					</v-card>
@@ -107,6 +145,11 @@ export default {
     return {
 			datetime: '',
 			lessons: [
+				{
+					"title": "Пустой урок",
+					"duration": "00:45:00",
+					"backgroundColor": "#ffc14d"
+				},
 				{ 
 					"title": "Русский язык", 
 					"duration": "00:45:00", 
@@ -119,6 +162,12 @@ export default {
 				}
 			],
 			edit: false,
+			eventId: '',
+			eventTitle: '',
+			eventStart: '',
+			eventEnd: '',
+			eventColor: '#5ba8ff',
+			eventDescription: '',
       options: {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
 				initialView: 'timeGridWeek',
@@ -134,15 +183,18 @@ export default {
 				allDaySlot:false,
 				editable: true,
 				selectable: true,
-				dateClick: this.handleDateClick,
+				aspectRatio: 1,
 				weekends: true,
 				firstDay: '1',
+				timeZone: 'UTC',
 				events: INITIAL_EVENTS,
 				eventClick: (info) => {
-					console.log(this.edit)
 					this.edit = true
-					console.log(this.edit)
-					console.log('View: ' + info.event.title)
+					this.eventTitle= info.event.title
+					this.eventStart= info.event.start.toISOString().split("Z")[0]
+					this.eventEnd= info.event.end.toISOString().split("Z")[0]
+					this.eventDescription = info.event.description
+					this.eventId = info.event.id
 				},
 				buttonText: {
 					today:    'Сегодня',
@@ -158,11 +210,19 @@ export default {
     }
   },
   methods: {
-    handleDateClick: function(arg) {
-      console.log('date click! ' + arg.dateStr)
-    },
-		showModal() {
-			return this.edit = !this.edit
+		changeEventData: function () {
+			let calendarApi = this.$refs.fullCalendar.getApi()
+			let event = calendarApi.getEventById(this.eventId)
+			event.setProp('title', this.eventTitle)
+			event.setDates(this.eventStart, this.eventEnd)
+			event.setProp('backgroundColor', this.eventColor)
+			this.edit=false
+		},
+		deleteEvent: function () {
+			let calendarApi = this.$refs.fullCalendar.getApi()
+			let event = calendarApi.getEventById(this.eventId)
+			event.remove()
+			this.edit=false
 		}
   },
 	created: function() {
@@ -206,4 +266,16 @@ export default {
 #elem2 {
 	z-index: 10;
 }
+.v-row input {
+	width: 100%;
+}
+.v-card-title {
+	text-align:center;
+}
+.lesson_info {
+	font-size:12px;
+	margin-bottom:0px;
+	margin-left:5px;
+}
+
 </style>

@@ -35,7 +35,9 @@ class AuthService {
 		]}
 		return axios
 			.post(API_URL + 'create', users)
-			.then(() => {})
+			.then(() => {
+				router.push('/auth')
+			})
 			.catch(err => {
 				console.log(err.response)
 			})
