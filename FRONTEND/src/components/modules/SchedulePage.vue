@@ -195,6 +195,12 @@ export default {
 					this.eventEnd= info.event.end.toISOString().split("Z")[0]
 					this.eventDescription = info.event.description
 					this.eventId = info.event.id
+					console.log(this.eventId)
+				},
+				eventReceive: (info) => {
+					// info.event.setProp('id', this.events.length)
+					console.log(info.relatedEvents)
+					
 				},
 				buttonText: {
 					today:    'Сегодня',
@@ -223,7 +229,7 @@ export default {
 			let event = calendarApi.getEventById(this.eventId)
 			event.remove()
 			this.edit=false
-		}
+		},
   },
 	created: function() {
 		let array = this.lessons
