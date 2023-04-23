@@ -88,6 +88,10 @@ export default {
                     moduleId: '3',
                     moduleName: 'Отдел кадров'
                 },
+                {
+                    moduleId: '4',
+                    moduleName: 'Отдел кадров'
+                },
             ]
         }
     },
