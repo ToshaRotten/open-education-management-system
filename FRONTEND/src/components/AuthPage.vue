@@ -6,7 +6,7 @@
 		<div class="main_block_login">
 			<p class="Rubik-Medium" style="font-size: 28px">
 				Вход по логину<br />
-				и паролю {{ this.$store.state.user.firstName }}
+				и паролю
 			</p>
 			<div class="text-field text-field_floating">
 				<input v-model="login" @input="Prikol" class="login_input text-field__input Rubik-Regular" type="login" id="login" placeholder="test@test.ru" />
@@ -18,7 +18,7 @@
 				<a href="#" class="password-control" :class="{ view: isView }" @click="switchVisibility()"></a>
 			</div>
 			<div class="authButton">
-				<button @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
+				<button disabled @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
 			</div>
 		</div>
 		<a href="reset.html"><p class="p_cl Rubik-Regular" style="margin-bottom: 10px">Я забыл пароль</p></a>
@@ -73,7 +73,7 @@ export default {
 		},
 	},
 	created: function() {
-		console.log(this.$store.user)
+
 	}
 }
 </script>

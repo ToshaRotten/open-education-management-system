@@ -11,8 +11,10 @@ class AuthService {
 				hash: hash,
 			})
 			.then(response => {
-				const token = response.data.token
-				localStorage.setItem('user-token', token)
+				this.$toast.success("Всё топ")
+				const user = response.data.token
+				// const token = response.data.user
+				localStorage.setItem('user', user)
 				router.push(`/dashboard`)
 			})
 			.catch(err => {

@@ -2,7 +2,11 @@ import config from '@/config/config'
 import router from '@/router'
 import axios from 'axios'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
+import { useToast } from 'vue-toastification'
+
 const API_URL = config.apiUrl + config.apiPort
+
 
 export default new Vuex.Store({
 	state: {
@@ -10,6 +14,7 @@ export default new Vuex.Store({
 		token: localStorage.getItem('token') || '',
 		user: {}
 	},
+	plugins: [createPersistedState()],
 	mutations: {
 		auth_request(state) {
 			state.status = 'loading'
@@ -26,6 +31,9 @@ export default new Vuex.Store({
 		logout(state) {
 			state.status = ''
 			state.token = ''
+			state.user = {}
+			const toast = useToast();
+			toast.info("Вы успешно вышли из аккаунта!", {timeout: 2000})
 		},
 	},
 	actions: {
@@ -34,29 +42,40 @@ export default new Vuex.Store({
 				commit('auth_request')
 				axios({ url: API_URL + '/user/read', data: user, method: 'POST' })
 					.then(resp => {
+						const toast = useToast();
 						console.log(resp)
+						toast.success("Вы успешно вошли в аккаунт!", {timeout: 2000})
 						const token = resp.data.token
 						const user = resp.data[0]
-						console.log(user)
 						localStorage.setItem('token', token)
-						console.log(localStorage)
 						axios.defaults.headers.common['Authorization'] = token
 						commit('auth_success', {token, user})
-						console.log(this.state)
 						resolve(resp)
 						router.push('/dashboard')
 					})
 					.catch(err => {
+						const toast = useToast();
+						toast.error(err.message, {timeout: 2000})
 						commit('auth_error')
 						localStorage.removeItem('token')
 						reject(err)
 					})
 			})
+
 		},
+
 	},
 	getters: {
 		loadData(state) {
 			return state.user
-		}
-	},
+		},
+		isAuthenticated(state) {
+			console.log(state.user)
+			if (Object.entries(state.user).length === 0) {
+				return false
+			}
+			else return true
+		},
+
+	}
 })

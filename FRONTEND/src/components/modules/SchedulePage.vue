@@ -1,17 +1,10 @@
 <template>
 	<div>
-		<p>Список уроков</p>
-		<div class='lessons_list'>
-			<div class='drag' v-for="lesson in lessons" :key='lesson'>
-				{{ lesson.title}}
-			</div>
-			<div class='drag'></div>
-		</div>
+		<p>Расписание занятий</p>
 	</div>
 
 	<div style="position: relative;">
 		<FullCalendar ref="fullCalendar" id="elem1" :options="options"/>
-
 		<template id="elem2">
 			<v-row justify="center">
 				<v-dialog
@@ -30,26 +23,20 @@
 					</template>
 					<v-card class="rounded-card">
 						<v-card-title>
-							<span class="text-h5">Редактирование урока</span>
+							<span class="text-h5">Страница занятия</span>
+							<hr>
 						</v-card-title>
 						<v-card-text>
-							<v-container>
-								<v-row>
+							<v-container class="lesson_block">
+								<v-row style="padding-top:15px;padding-left:15px; padding-bottom: 20px;">
 									<v-col
 											cols="12"
 											sm="12"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
-										<p class="lesson_info">Название урока</p>
-										<input
-												type="text"
-												v-model="eventTitle"
-												placeholder="Введите название урока"
-												required
-										>
-										<select style="width:100%;" v-model="eventTitle">
-											<option v-for="lesson in lessons" :key="lesson"> {{lesson.title}}</option>
-										</select>
+										<p class="lesson_user_info">Название урока</p>
+										<p type="text"> {{ eventTitle }} </p>
 									</v-col>
 
 									<v-col
@@ -57,66 +44,42 @@
 											sm="6"
 											md="10"
 									>
-										<p class="lesson_info">Описание урока</p>
-										<input
-												v-model="eventDescription"
-												placeholder="Здесь находится описание занятия"
-										>
+										<p class="lesson_user_info">Описание урока</p>
+										<p>{{eventDescription}}</p>
 									</v-col>
 									<v-col
 											cols="12"
 											sm="6"
 											md="10"
 									>
-										<p class="lesson_info">Начало урока</p>
-										<input
-												type="datetime-local"
-												v-model="eventStart">
+										<p class="lesson_user_info">Дата</p>
+										<p> {{eventDate}} с {{eventStart}} до {{eventEnd}}</p>
 									</v-col>
+								</v-row>
+							</v-container>
+							<v-container class="lesson_block">
+								<v-row style="padding-top:15px;padding-left:15px; padding-bottom: 20px;">
 									<v-col
 											cols="12"
-											sm="6"
+											sm="12"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
-										<p class="lesson_info">Конец урока</p>
-										<input
-												type="datetime-local"
-												v-model="eventEnd">
-									</v-col>
-									<v-col
-											cols="12"
-											sm="6"
-											md="10"
-									>
-										<p class="lesson_info">Выбор цвета</p>
-										<input
-												type="color"
-												v-model="eventColor">
+										<p class="lesson_user_info">Учитель</p>
+										<p type="text"> {{ eventTeacher }} </p>
 									</v-col>
 								</v-row>
 							</v-container>
 						</v-card-text>
-						<v-card-actions>
+						<v-card-actions style="text-align: center">
 							<v-spacer></v-spacer>
 							<v-btn
-									color="blue-darken-1"
-									variant="text"
+									style="margin: 0 auto;"
+									color="cyan-darken-2"
+									variant="elevated"
 									@click="edit = false"
 							>
 								Закрыть
-							</v-btn>
-							<v-btn
-									color="blue-darken-1"
-									variant="text"
-									@click="changeEventData"
-							>
-								Сохранить
-							</v-btn>
-							<v-btn
-									color="red"
-									@click="deleteEvent"
-							>
-								Удалить
 							</v-btn>
 						</v-card-actions>
 					</v-card>
@@ -130,7 +93,7 @@
 <script>
 // import '@fullcalendar/core/vdom'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
+import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import FullCalendar from '@fullcalendar/vue3'
@@ -144,30 +107,16 @@ export default {
   data() {
     return {
 			datetime: '',
-			lessons: [
-				{
-					"title": "Пустой урок",
-					"duration": "00:45:00",
-					"backgroundColor": "#ffc14d"
-				},
-				{ 
-					"title": "Русский язык", 
-					"duration": "00:45:00", 
-					"backgroundColor": "#FF6B6B" 
-				},
-				{ 
-					"title": "Математика", 
-					"duration": "00:45:00", 
-					"backgroundColor": "#3FBAFF" 
-				}
-			],
 			edit: false,
 			eventId: '',
 			eventTitle: '',
+			eventDate: '',
 			eventStart: '',
 			eventEnd: '',
+			eventBack: '',
 			eventColor: '#5ba8ff',
 			eventDescription: '',
+			eventTeacher: '',
       options: {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
 				initialView: 'timeGridWeek',
@@ -181,9 +130,11 @@ export default {
 				slotMaxTime: "19:00:00",
 				slotDuration: "00:15:00",
 				allDaySlot:false,
-				editable: true,
+				editable: false,
 				selectable: true,
 				aspectRatio: 1,
+				height: 700,
+				contentHeight: 700,
 				weekends: true,
 				firstDay: '1',
 				timeZone: 'UTC',
@@ -191,10 +142,22 @@ export default {
 				eventClick: (info) => {
 					this.edit = true
 					this.eventTitle= info.event.title
-					this.eventStart= info.event.start.toISOString().split("Z")[0]
-					this.eventEnd= info.event.end.toISOString().split("Z")[0]
-					this.eventDescription = info.event.description
+					console.log(info.event.start.toISOString())
+					this.eventDate = info.event.start.toISOString().split("T")[0]
+					let tempStart = info.event.start.toISOString().split("T")[1].split(".")[0]
+					this.eventStart= tempStart.substring(0,tempStart.length-3)
+					console.log(this.eventStart)
+					let tempEnd = info.event.end.toISOString().split("T")[1].split(".")[0]
+					this.eventBack = info.event.start.toISOString().split("T")[1].split(".")[1]
+					this.eventEnd = tempEnd.substring(0, tempEnd.length-3)
+					this.eventDescription = info.event.extendedProps.description
+					this.eventTeacher = info.event.extendedProps.teacher
 					this.eventId = info.event.id
+				},
+				eventReceive: (info) => {
+					// info.event.setProp('id', this.events.length)
+					console.log(info.relatedEvents)
+
 				},
 				buttonText: {
 					today:    'Сегодня',
@@ -203,60 +166,15 @@ export default {
 					day:      'День',
 					list:     'Список'
 				},
-				height: 700,
 				locale: 'ru',
 				themeSystem: 'bootstrap5'
       }
     }
   },
-	watch: {
-		$route() {
-			this.$nextTick(this.typeLessons);
-		}
-	},
   methods: {
-		changeEventData: function () {
-			let calendarApi = this.$refs.fullCalendar.getApi()
-			let event = calendarApi.getEventById(this.eventId)
-			event.setProp('title', this.eventTitle)
-			event.setDates(this.eventStart, this.eventEnd)
-			event.setProp('backgroundColor', this.eventColor)
-			this.edit=false
-		},
-		deleteEvent: function () {
-			let calendarApi = this.$refs.fullCalendar.getApi()
-			let event = calendarApi.getEventById(this.eventId)
-			event.remove()
-			this.edit=false
-		},
-		typeLessons: function() {
-			let array = this.lessons
-			console.log("hgaha")
-			document.addEventListener('DOMContentLoaded', function() {
-				let draggableEl = document.getElementsByClassName("drag");
 
-				for(let i = 0; i < array.length; i++) {
-					new Draggable(draggableEl[i], {
-						eventData: array[i]
-					});
-				}
-			})
-		}
   },
-	beforeMount() {
-		this.typeLessons()
-	}
-	// created: function() {
-	// 	let array = this.lessons
-	// 	document.addEventListener('DOMContentLoaded', function() {
-	// 	let draggableEl = document.getElementsByClassName("drag");
-	// 	for(let i = 0; i < array.length; i++) {
-	// 		new Draggable(draggableEl[i], {
-	// 			eventData: array[i]
-	// 		});
-	// 	}
-	// });
-	// }
+
 }
 </script>
 
@@ -276,16 +194,16 @@ export default {
 	border-radius: 10px;
 	border-color: white;
 }
-#elem1,
+#elem1 {
+
+}
 #elem2 {
 		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
-}
-#elem2 {
-	z-index: 10;
+		z-index: 10;
 }
 .v-row input {
 	width: 100%;
@@ -293,10 +211,26 @@ export default {
 .v-card-title {
 	text-align:center;
 }
-.lesson_info {
-	font-size:12px;
+.lesson_user_info {
+	font-size:16px;
 	margin-bottom:0px;
-	margin-left:5px;
+	font-family: "Rubik Medium";
 }
-
+hr {
+	border: none;
+	height: 1px;
+	/* Set the hr color */
+	color: #333;  /* old IE */
+	background-color: #333;
+}
+.lesson_block {
+	padding-top: 0px;
+	padding-left:0px;
+	padding-right:0px;
+	border-radius: 15px;
+	background-color: #f7fbff;
+	border-color: #cdcdcd;
+	border-width: 1px;
+	border-style:solid;
+}
 </style>

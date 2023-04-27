@@ -9,7 +9,7 @@
               <a class="" @click="$router.push('/auth')">Выйти</a>
           </div>
           <div class="second-nav">
-              <p class="" style="font-size:26px;">Главная</p>
+              <p class="" style="font-size:26px;">Модули</p>
           </div>
       </div>
   </header>
@@ -18,8 +18,7 @@
     <div class="main-block">
           <div class="profile">
               <img src="../assets/img/ava.png">
-              <p>{{ firstName }} {{ lastName }}</p>
-              <p style="font-size:17px;"> {{ role }}</p>
+              <p class="profile">{{ firstName }} {{ lastName }}</p>
           </div>
           <div class="modules">
               <div class="module" @click="$router.push('/dashboard')">
@@ -36,14 +35,14 @@
                    </svg>
                   <p class = "module-name selected-module">Модули</p>
               </div>
-              <div class="module">
+              <div class="module" @click="$router.push({ name: 'help'})">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bulb" width="23" height="23" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                       <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-8.7 9.7a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3m.7 1l4.6 0"></path>
                    </svg>
                   <p class = "module-name">Помощь</p>
               </div>
-              <div class="module">
+              <div class="module" @click="$router.push({ name: 'settings'})">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="23" height="23" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                       <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065zm1.675 7.683m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
@@ -58,11 +57,13 @@
             <p>Выберите доступный модуль</p>
         </div>
         <div>
-            <button class='module_list' v-for='module in modules' :key='module'>
-            {{ module.moduleName }}
+            <button class='module_list'
+                    v-for='module in modules'
+                    :key='module'
+                    @click="$router.push(module.path)" style="cursor:pointer;">
+               {{ module.moduleName }}
             </button>
         </div>
-          
       </div>
   </div>
 </template>
@@ -78,19 +79,23 @@ export default {
             modules: [
                 {
                     moduleId: '1',
-                    moduleName: 'Расписание'
+                    moduleName: 'Расписание',
+                    path: '/modules/generate'
                 },
                 {
                     moduleId: '2',
-                    moduleName: 'Дневник'
+                    moduleName: 'Дневник',
+                    path: '/modules/journal'
                 },
                 {
                     moduleId: '3',
-                    moduleName: 'Отдел кадров'
+                    moduleName: 'Онлайн встреча',
+                    path: '/modules/meet'
                 },
                 {
                     moduleId: '4',
-                    moduleName: 'Отдел кадров'
+                    moduleName: 'Что это?',
+                    path: '/modules/journal'
                 },
             ]
         }
