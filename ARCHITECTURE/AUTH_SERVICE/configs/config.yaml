@@ -1,2 +1,5 @@
   host: "localhost"
-  port: ":5671"
+  port: ":8080"
+  scheme: "test" //"test"; "proj"
+  buffer: "small" //"small"; "medium"; "large";
+

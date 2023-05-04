@@ -22,6 +22,7 @@ func main() {
 	logo.Print()
 
 	logger.Info("Starting ...")
+
 	flag.Parse()
 	conf := config.New()
 

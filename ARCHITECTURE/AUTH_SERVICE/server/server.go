@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -53,8 +54,17 @@ func (s *APIServer) Start(config *config.Config) error {
 }
 
 func (s *APIServer) configureLogger() error {
-	s.Logger.Trace("Logger ...")
+	s.Logger = &logrus.Logger{
+		Out:   os.Stderr,
+		Level: logrus.DebugLevel,
+		Formatter: &logrus.TextFormatter{
+			ForceColors: true,
+			ForceQuote:  true,
+		},
+	}
+
 	s.Logger.SetLevel(logrus.Level(6))
+	s.Logger.Trace("Logger ...")
 	return nil
 }
 
@@ -162,5 +172,39 @@ func (s *APIServer) delete() http.HandlerFunc {
 			s.Logger.Error(err)
 		}
 		s.Users.DeleteUsers(usersData.Users)
+	})
+}
+
+func (s *APIServer) auth() http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		userData, err := utils.ParseUsersFromJSON(r)
+		if err != nil {
+			s.Logger.Error(err)
+		}
+		valid := s.Users.ValidateUsers(userData.Users)
+		if valid {
+			foundedUsers := s.Users.ReadUsers(userData.Users)
+			if len(foundedUsers) > 1 {
+				s.Logger.Error(errors.New("Хана"))
+			} else {
+				if foundedUsers[0].Hash == userData.Users[0].Hash {
+					marshaled, _ := json.Marshal(&userData.Users[0])
+					w.Write(marshaled)
+				} else {
+					w.WriteHeader(http.StatusUnauthorized)
+				}
+			}
+		} else {
+			w.WriteHeader(http.StatusNotAcceptable)
+		}
+	})
+}
+
+func (s *APIServer) register() http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		//userData, err := utils.ParseUsersFromJSON(r)
+		//if err != nil {
+		//	s.Logger.Error(err)
+		//}
 	})
 }
