@@ -6,6 +6,7 @@ import (
 
 type Buffer struct {
 	data  []models.User
+	Limit int
 	count int
 }
 
