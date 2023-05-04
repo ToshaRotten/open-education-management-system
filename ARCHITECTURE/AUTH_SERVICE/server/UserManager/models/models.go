@@ -9,7 +9,9 @@ type User struct {
 	Email     string `json:"email"`
 	DOB       string `json:"DOB"`
 	Role      string `json:"role"`
+	Group     string `json:"group"`
 	Hash      string `json:"hash"`
+	Job       string `json:"job"`
 }
 
 type Users struct {
