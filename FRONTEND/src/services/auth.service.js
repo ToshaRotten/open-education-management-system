@@ -6,13 +6,15 @@ const API_URL = config.apiUrl + config.apiPort + '/user/'
 class AuthService {
 	login(firstName, hash) {
 		return axios
-			.post(API_URL + 'auth', {
+			.post(API_URL + 'read', {
 				firstName: firstName,
 				hash: hash,
 			})
 			.then(response => {
-				const token = response.data.token
-				localStorage.setItem('user-token', token)
+				this.$toast.success("Всё топ")
+				const user = response.data.token
+				// const token = response.data.user
+				localStorage.setItem('user', user)
 				router.push(`/dashboard`)
 			})
 			.catch(err => {
@@ -20,8 +22,9 @@ class AuthService {
 			})
 	}
 	register(firstName, lastName, thirdName, phone, email, DOB, role, hash) {
-		return axios
-			.post(API_URL + 'register', {
+		
+		let users = {users:[
+			{
 				firstName: firstName,
 				lastName: lastName,
 				thirdName: thirdName,
@@ -29,9 +32,15 @@ class AuthService {
 				email: email,
 				DOB: DOB,
 				role: role,
-				hash: hash,
+				hash: hash
+			}
+		]}
+		return axios
+			.post(API_URL + 'create', users)
+			.then(response => {
+				console.log(response)
+				router.push('/auth')
 			})
-			.then(() => {})
 			.catch(err => {
 				console.log(err.response)
 			})

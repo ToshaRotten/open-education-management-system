@@ -1,21 +1,26 @@
 header {
     width:100%;
     background-color: rgba(255, 255, 255, 0.654);
-    float:left;
     margin: 0 auto;
 }
 .navigation {
-    
+    margin-top:15px;
 }
 .second-nav {
-    display:inline-block;
     text-align: center;
     font-family: 'TT Commons';
+    display: block;
+    box-sizing: border-box;
+    margin-left: 4em;
 }
 .third-nav {
-    display:inline-block;
     font-family: 'TT Commons';
     color:black;
+    display: block;
+    box-sizing: border-box;
+    clear: both;
+    float: right;
+    margin-right: 15px;
 }
 a {
     text-decoration: none;
@@ -28,18 +33,17 @@ a {
     width:300px;
     clear:both;
     position: relative;
-    display:table-cell;
+    display:table;
     height:100vh;
     background-image: url('../img/back.png');
     background-size: 100%;
     background-repeat: no-repeat;
-    
 }
 .alternative-block {
     background-image: url('../img/main_back.png');
     display:table-cell;
-    width: 100vw;
-    background-repeat: no-repeat;
+    width:100em;
+    background-size: 100%;
 }
 .profile {
     position: relative;
@@ -47,7 +51,15 @@ a {
     text-align: center;
     color:black;
     width:100%;
-    font: 25px 'Rubik Regular';
+    font: 18px 'Rubik Regular';
+}
+.profile p{
+    position: relative;
+    margin-top:10px;
+    text-align: center;
+    color:black;
+    width:100%;
+    font: 18px 'Rubik Regular';
 }
 .modules {
     height: 100px;
@@ -77,6 +89,19 @@ li {
     margin-top: -2px; 
     margin-right: 5px;
 }
+.TTCommons {
+    font-family: 'TT Commons Light'
+}
+.TTCommons-Regular {
+    font-family: 'TT Commons Regular'
+}
+.TTCommons-Bold {
+    font-family: 'TT Commons Bold'
+}
+.TTCommons-Medium {
+    font-family: 'TT Commons Medium'
+}
+
 
 @import url("../TTCommons/stylesheet.css");
 @import url("../Rubik/stylesheet.css")

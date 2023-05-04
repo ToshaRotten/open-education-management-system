@@ -18,7 +18,7 @@
 				<a href="#" class="password-control" :class="{ view: isView }" @click="switchVisibility()"></a>
 			</div>
 			<div class="authButton">
-				<button @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
+				<button disabled @click="checkAuth" class="btn_login Rubik-Medium" id="submitButton">Войти</button>
 			</div>
 		</div>
 		<a href="reset.html"><p class="p_cl Rubik-Regular" style="margin-bottom: 10px">Я забыл пароль</p></a>
@@ -51,10 +51,12 @@ export default {
 		checkAuth() {
 			// let firstName = this.login
 			// let hash = this.pass
-			const user = {
-				firstName: this.login,
-				hash: this.pass,
-			}
+			let user = {users:[
+				{
+					firstName: this.login,
+					hash: this.pass
+				}
+			]}
 			//Auth.login(this.login, this.pass)
 			this.$store.dispatch('login', user)
 		},
@@ -70,6 +72,9 @@ export default {
 			}
 		},
 	},
+	created: function() {
+
+	}
 }
 </script>
 <style>
