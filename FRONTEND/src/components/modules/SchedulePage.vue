@@ -1,10 +1,8 @@
 <template>
-	<div>
-		<p>Расписание занятий</p>
-	</div>
 
 	<div style="position: relative;">
-		<FullCalendar ref="fullCalendar" id="elem1" :options="options"/>
+
+		<FullCalendar ref="fullCalendar" v-if="userRole==0" id="elem1" :options="options" class="schedule-block"/>
 		<template id="elem2">
 			<v-row justify="center">
 				<v-dialog
@@ -55,6 +53,14 @@
 										<p class="lesson_user_info">Дата</p>
 										<p> {{eventDate}} с {{eventStart}} до {{eventEnd}}</p>
 									</v-col>
+									<v-col
+											cols="12"
+											sm="6"
+											md="10"
+									>
+										<p class="lesson_user_info">Класс</p>
+										<p> {{eventClass}}</p>
+									</v-col>
 								</v-row>
 							</v-container>
 							<v-container class="lesson_block">
@@ -74,12 +80,22 @@
 						<v-card-actions style="text-align: center">
 							<v-spacer></v-spacer>
 							<v-btn
+									v-if="userRole==0"
 									style="margin: 0 auto;"
 									color="cyan-darken-2"
 									variant="elevated"
 									@click="edit = false"
 							>
 								Закрыть
+							</v-btn>
+							<v-btn
+									v-else
+									style="margin: 0 auto;"
+									color="cyan-darken-2"
+									variant="elevated"
+									@click="edit = false"
+							>
+								Сохранить и закрыть
 							</v-btn>
 						</v-card-actions>
 					</v-card>
@@ -108,12 +124,14 @@ export default {
     return {
 			datetime: '',
 			edit: false,
+			userRole: this.$store.getters.loadData.role,
 			eventId: '',
 			eventTitle: '',
 			eventDate: '',
 			eventStart: '',
 			eventEnd: '',
 			eventBack: '',
+			eventClass: '',
 			eventColor: '#5ba8ff',
 			eventDescription: '',
 			eventTeacher: '',
@@ -133,7 +151,7 @@ export default {
 				editable: false,
 				selectable: true,
 				aspectRatio: 1,
-				height: 700,
+				height: window.screen.height-300,
 				contentHeight: 700,
 				weekends: true,
 				firstDay: '1',
@@ -150,6 +168,7 @@ export default {
 					let tempEnd = info.event.end.toISOString().split("T")[1].split(".")[0]
 					this.eventBack = info.event.start.toISOString().split("T")[1].split(".")[1]
 					this.eventEnd = tempEnd.substring(0, tempEnd.length-3)
+					this.eventClass = info.event.extendedProps.class
 					this.eventDescription = info.event.extendedProps.description
 					this.eventTeacher = info.event.extendedProps.teacher
 					this.eventId = info.event.id
@@ -225,8 +244,8 @@ hr {
 }
 .lesson_block {
 	padding-top: 0px;
-	padding-left:0px;
-	padding-right:0px;
+	padding-left: 0px;
+	padding-right: 0px;
 	border-radius: 15px;
 	background-color: #f7fbff;
 	border-color: #cdcdcd;

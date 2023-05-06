@@ -32,7 +32,7 @@ export default {
         return {
             rooms: [
                 {
-                    roomId: '1',
+                    roomId: 'Русский_Язык_28.04.23',
                     title: 'Русский язык'
                 },
                 {

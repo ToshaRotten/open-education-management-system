@@ -1,21 +1,22 @@
 <template>
-    <header>
-        <div class="navigation">
-            <div class="third-nav">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door-exit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M13 12v.01m-10 8.99h18m-16 0v-16a2 2 0 0 1 2 -2h7.5m2.5 10.5v7.5m-3 -14h7m-3 -3l3 3l-3 3"></path>
-                </svg>
-                <a class="" @click="$router.push('/auth')">Выйти</a>
-            </div>
-            <div class="second-nav">
-                <p class="" style="font-size:26px;">Расписание</p>
-            </div>
-        </div>
-    </header>
+<!--    <header>-->
+<!--        <div class="navigation">-->
+<!--            <div class="third-nav">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door-exit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>-->
+<!--                    <path d="M13 12v.01m-10 8.99h18m-16 0v-16a2 2 0 0 1 2 -2h7.5m2.5 10.5v7.5m-3 -14h7m-3 -3l3 3l-3 3"></path>-->
+<!--                </svg>-->
+<!--                <a class="" @click="$router.push('/auth')">Выйти</a>-->
+<!--            </div>-->
+<!--            <div class="second-nav">-->
+<!--                <p class="" style="font-size:26px;">Расписание</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
 
     <div class="main">
         <div class="main-block">
+            <img @click="$router.push('/')" src="../../assets/img/Logotype.png">
             <div class="profile">
                 <img src="../../assets/img/ava.png">
                 <p class="profile">{{ firstName }} {{ lastName }}</p>
@@ -23,7 +24,7 @@
             </div>
             <div class="modules">
                 <div class="module" @click="$router.push({ name: 'dashboard'})">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="23" height="23" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="23" height="23" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M5 12l-2 0l9 -9l9 9l-2 0m-14 0v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7m-10 9v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
                     </svg>
@@ -37,20 +38,22 @@
                     <p class = "module-name selected-module">Модули</p>
                 </div>
                 <div class="module" @click="$router.push({ name: 'help'})">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bulb" width="23" height="23" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bulb" width="23" height="23" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-8.7 9.7a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3m.7 1l4.6 0"></path>
                     </svg>
                     <p class = "module-name">Помощь</p>
                 </div>
                 <div class="module" @click="$router.push({ name: 'settings'})">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="23" height="23" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="23" height="23" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065zm1.675 7.683m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
                     </svg>
-                    <p class = "module-name">Настройки</p>
+                    <p class = "module-name">Профиль</p>
                 </div>
-
+                <div class="logout">
+                    <p class="" @click="logout">Выход</p>
+                </div>
             </div>
         </div>
         <div class="alternative-block">
@@ -61,8 +64,8 @@
                     </div>
                 </div>
             </div>
-            <div style="position: relative;">
-                <FullCalendar ref="fullCalendar" id="elem1" :options="options"/>
+            <div style="position: relative;margin-top:10px;">
+                <FullCalendar ref="fullCalendar" id="elem1" :options="options" class="schedule-block"/>
                 <template id="elem2">
                     <v-row justify="center">
                         <v-dialog
@@ -155,6 +158,16 @@
                                                 <p class="lesson_info">Выбор педагога</p>
                                                 <select style="width:100%;" v-model="eventTeacher">
                                                     <option v-for="teacher in teachers" :key="teacher"> {{teacher.name}}</option>
+                                                </select>
+                                            </v-col>
+                                            <v-col
+                                                cols="12"
+                                                sm="6"
+                                                md="10"
+                                            >
+                                                <p class="lesson_info">Выбор класса</p>
+                                                <select style="width:100%;" v-model="eventClass">
+                                                    <option v-for="clas in classes" :key="clas"> {{clas}}</option>
                                                 </select>
                                             </v-col>
 
@@ -272,6 +285,17 @@ export default {
                 {name:"Романов Антон Дмитриевич"},
                 {name:"Антонов Роман Александрович"},
             ],
+            classes: ["1А","1Б","1В","1Г",
+                "2А","2Б","2В","2Г",
+                "3А","3Б","3В","3Г",
+                "4А","4Б","4В","4Г",
+                "5А","5Б","5В","5Г",
+                "6А","6Б","6В","6Г",
+                "7А","7Б","7В","7Г",
+                "8А","8Б","8В","8Г",
+                "9А","9Б","9В","9Г",
+                "10А","10Б","10В","10Г",
+                "11А","11Б","11В","11Г"],
             edit: false,
             eventId: '',
             eventTitle: '',
@@ -280,6 +304,7 @@ export default {
             eventStart: '',
             eventEnd: '',
             eventBack: '',
+            eventClass: '',
             eventColor: '#5ba8ff',
             eventDescription: '',
             options: {
@@ -311,6 +336,7 @@ export default {
                     let tempEnd = info.event.end.toISOString().split("T")[1].split(".")[0]
                     this.eventBack = info.event.start.toISOString().split("T")[1].split(".")[1]
                     this.eventEnd = tempEnd.substring(0, tempEnd.length-3)
+                    this.eventClass = info.event.extendedProps.class
                     this.eventTeacher = info.event.extendedProps.teacher
                     this.eventDescription = info.event.extendedProps.description
                     this.eventId = info.event.id
@@ -354,6 +380,7 @@ export default {
             event.setProp('backgroundColor', this.eventColor)
             event.setExtendedProp('description', this.eventDescription)
             event.setExtendedProp('teacher', this.eventTeacher)
+            event.setExtendedProp('class', this.eventClass)
             this.edit=false
             this.toast.success("Урок успешно изменён!")
         },

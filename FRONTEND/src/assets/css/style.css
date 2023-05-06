@@ -1,7 +1,10 @@
 header {
     width:100%;
     background-color: rgba(255, 255, 255, 0.654);
-    margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 6vh;
+
 }
 .navigation {
     margin-top:15px;
@@ -27,10 +30,10 @@ a {
     color:black;
 }
 .main {
-    display:table;
+    display:flex;
 }
 .main-block {
-    width:300px;
+    width:20vw;
     clear:both;
     position: relative;
     display:table;
@@ -39,19 +42,52 @@ a {
     background-size: 100%;
     background-repeat: no-repeat;
 }
+.main-block img {
+    cursor:pointer;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
 .alternative-block {
     background-image: url('../img/main_back.png');
-    display:table-cell;
+    display:table;
     width:100em;
+    padding:4vw;
     background-size: 100%;
 }
 .profile {
     position: relative;
-    margin-top:30px;
+
     text-align: center;
     color:black;
     width:100%;
     font: 18px 'Rubik Regular';
+}
+.logout {
+    bottom: 10vh;
+    border-radius: 15px;
+    height: 50px;
+    width: 6em;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    display: flex;
+    left:25%;
+    position: absolute;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background-color: #83b1ff;
+    color:white;
+}
+.logout p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+}
+.logout:hover {
+    background-color: #3b82ff;
+    color:white;
 }
 .profile p{
     position: relative;
@@ -61,32 +97,42 @@ a {
     width:100%;
     font: 18px 'Rubik Regular';
 }
+.profile img {
+    cursor: auto;
+}
 .modules {
-    height: 100px;
-    margin-top:50px;
-    margin-left: 75px;
+    padding: 20px 40px 40px 40px;
     text-align: left;
     font: 22px 'TT Commons';
     font-style: normal;
 }
 .module {
     margin-bottom: 10px;
+    border-radius: 15px;
     color:#00000089;
+    height: 50px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+.module:hover {
+    background-color: #83b1ff;
+    color:white;
 }
 .module-name {
-    font: 22px 'TT Commons';
-}
-.selected-module {
-    font: 22px 'TT Commons';
-    color:black;
+    margin-top: 17px;
+    margin-left: 20px;
+    font: 24px 'TT Commons';
 }
 li {
     list-style-type: none;
 }
 .icon {
     float:left; 
-    margin-top: -2px; 
+    margin-top: -2px;
+    margin-left: 20px;
     margin-right: 5px;
 }
 .TTCommons {

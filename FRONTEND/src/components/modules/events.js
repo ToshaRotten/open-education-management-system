@@ -7,9 +7,9 @@ export const INITIAL_EVENTS = [
 		backgroundColor: '#5ba8ff',
 		extendedProps: {
 			description: 'Это просто русский язык',
-			teacher: 'Баринов Виктор Петрович'
+			teacher: 'Баринов Виктор Петрович',
+			class: '9А'
 		}
-
 	},
 	{
 		id: 1,
@@ -19,8 +19,8 @@ export const INITIAL_EVENTS = [
 		backgroundColor: '#5ba8ff',
 		extendedProps: {
 			description: 'Это просто русский язык и математика',
-			teacher: 'Карцев Павел Сергеевич'
+			teacher: 'Карцев Павел Сергеевич',
+			class: '7Б'
 		}
-
 	},
 ]

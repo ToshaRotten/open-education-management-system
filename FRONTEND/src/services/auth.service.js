@@ -1,6 +1,7 @@
 import config from '@/config/config'
 import router from '@/router'
 import axios from 'axios'
+import { useToast } from 'vue-toastification'
 
 const API_URL = config.apiUrl + config.apiPort + '/user/'
 class AuthService {
@@ -39,10 +40,13 @@ class AuthService {
 			.post(API_URL + 'create', users)
 			.then(response => {
 				console.log(response)
+				const toast = useToast()
+				toast.success("Вы успешно зарегистрировались!", {timeout: 2000})
 				router.push('/auth')
 			})
 			.catch(err => {
-				console.log(err.response)
+				const toast = useToast()
+				toast.error(err.message, {timeout: 2000})
 			})
 	}
 }
