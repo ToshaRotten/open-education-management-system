@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "proto/pb";
+
+service Runner{
+  rpc CheckStatus (StatusRequest) returns (StatusResponse) {}
+  rpc RunService (RunRequest) returns (RunResponse){}
+}
+
+message StatusRequest {
+  string Request = 1;
+}
+
+message StatusResponse {
+  string Response = 1;
+}
+
+message RunRequest {
+  repeated string ServiceNames = 1;
+}
+
+message RunResponse {
+  repeated string ServiceNames = 1;
+  repeated string ServiceStatuses = 2;
+}
