@@ -1,3 +1,6 @@
 /env
-/ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/complete_data/
-/ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/zip_source/
+/ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/complete_data/docker_images/
+/ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/complete_data/repo/
+/ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/zip_source/*
+/.idea/
+/ARCHITECTURE/SECRET_KEEPER_SERVICE/secret_keeper/secrets/*
