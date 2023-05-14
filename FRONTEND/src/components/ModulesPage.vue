@@ -68,26 +68,38 @@ export default {
                 {
                     moduleId: '1',
                     moduleName: 'Расписание',
-                    path: '/modules/generate'
+                    path: '/modules/generate',
+                    role: '0'
                 },
                 {
                     moduleId: '2',
                     moduleName: 'Дневник',
-                    path: '/modules/journal'
+                    path: '/modules/journal',
+                    role: '0'
                 },
                 {
                     moduleId: '3',
                     moduleName: 'Онлайн встреча',
-                    path: '/modules/meet'
+                    path: '/modules/meet',
+                    role: '0'
                 },
                 {
                     moduleId: '4',
                     moduleName: 'Что это?',
-                    path: '/modules/journal'
+                    path: '/modules/journal',
+                    role: '0'
                 },
             ]
         }
     },
+    methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
+        },
+    }
 
 }
 

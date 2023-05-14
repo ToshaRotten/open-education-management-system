@@ -82,6 +82,14 @@ export default {
             firstName: this.$store.getters.loadData.firstName,
             lastName: this.$store.getters.loadData.lastName,
         }
+    },
+    methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
+        }
     }
 }
 </script>

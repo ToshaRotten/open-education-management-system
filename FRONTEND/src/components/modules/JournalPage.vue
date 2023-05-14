@@ -99,6 +99,12 @@ export default {
         }
     },
     methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
+        },
         averageGraduate: function(arr) {
             let sum = 0;
             for(let i = 0; i < arr.length; i++)

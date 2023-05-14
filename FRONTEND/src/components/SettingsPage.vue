@@ -66,6 +66,14 @@ export default {
             thirdName: this.$store.getters.loadData.thirdName,
             DOB: this.$store.getters.loadData.DOB,
         }
+    },
+    methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
+        },
     }
 }
 </script>

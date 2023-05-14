@@ -54,6 +54,17 @@
                     <p style="font-size: 12px;"> {{ grade.date }}</p>
                 </div>
             </div>
+            <div class="news-block">
+                <p align="center" class="Rubik-Regular" style="font-size: 22px;">Последние новости</p><hr>
+                <div class="list-news">
+                    <div class="news" v-for="news in lastNews" :key="news">
+                        <p style="margin:0;"> {{ news.date }} </p>
+                        <p style="font-weight: bold; margin:0;"> {{ news.name }} </p>
+                        <p style="font-size:14px;"> {{ news.description }} </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
   </div>
@@ -69,7 +80,8 @@ export default {
       return {
           firstName: this.$store.getters.loadData.firstName,
           lastName: this.$store.getters.loadData.lastName,
-          lastGrades: []
+          lastGrades: [],
+          lastNews: []
       }
   },
   components: {
@@ -77,6 +89,7 @@ export default {
   },
   created() {
       this.getGrades()
+      this.getLastNews()
   },
   methods: {
     logout: function () {
@@ -109,6 +122,31 @@ export default {
               }
           ]
           this.lastGrades = grades
+      },
+      getLastNews: function () {
+          let lastNews = [
+              {
+                  date: '24.05.2023',
+                  name: 'Новый чайник',
+                  description: 'Корабли лавировали, лавировали, да не вылавировали.'
+              },
+              {
+                  date: '22.05.2023',
+                  name: 'Новый трамвай',
+                  description: 'У четырех черепашек четыре черепашонка.У четырех черепашек четыре черепашонка.У четырех черепашек четыре черепашонка.У четырех черепашек четыре черепашонка.'
+              },
+              {
+                  date: '22.05.2023',
+                  name: 'Новый учебник',
+                  description: 'Купили учебник'
+              },
+              {
+                  date: '22.05.2023',
+                  name: 'Новый учитель',
+                  description: 'Купили учителя'
+              }
+          ]
+          this.lastNews = lastNews
       },
       colorizeGrads:function () {
           let grads = document.getElementsByClassName('grade')
@@ -147,6 +185,7 @@ export default {
     background-color: white;
     filter: drop-shadow(0px 1px 4px #3c3c3c);
 }
+
 .grade {
     border-radius: 15px;
     border-style: solid;
@@ -157,6 +196,37 @@ export default {
 }
 .grade p {
     margin: 0;
+}
+.news-block {
+    display:inline-block;
+    border-style: solid;
+    border-radius: 15px;
+    width: 30%;
+    border-width: 0px;
+    padding:15px;
+    margin-top: 50px;
+
+    height: 50vh;
+    background-color: white;
+    text-align: left;
+    filter: drop-shadow(0px 1px 4px #3c3c3c);
+}
+.list-news {
+    height: 88%;
+    overflow-y: scroll;
+}
+.list-news::-webkit-scrollbar {
+    width:7px;
+}
+.list-news::-webkit-scrollbar-thumb {
+    background-color: #223c50;
+}
+.news {
+    border-radius: 15px;
+    border-style: solid;
+    background-color: #48aaff;
+    color: white;
+    padding: 15px;
 }
 @import url("../assets/css/style.css");
 </style>

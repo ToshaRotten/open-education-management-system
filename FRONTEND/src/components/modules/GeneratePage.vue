@@ -370,6 +370,12 @@ export default {
         }
     },
     methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
+        },
         changeEventData: function () {
             let calendarApi = this.$refs.fullCalendar.getApi()
             let event = calendarApi.getEventById(this.eventId)
