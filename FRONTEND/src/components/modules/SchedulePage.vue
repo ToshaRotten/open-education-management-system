@@ -2,14 +2,13 @@
 
 	<div style="position: relative;">
 
-		<FullCalendar ref="fullCalendar" v-if="userRole==0" id="elem1" :options="options" class="schedule-block"/>
+		<FullCalendar ref="fullCalendar" v-if="userRole==0" id="elem1_calendar" :options="options" class="schedule-block"/>
 		<template id="elem2">
 			<v-row justify="center">
 				<v-dialog
 						v-model="edit"
 						persistent
 						width="600"
-						height="650"
 				>
 					<template v-slot:activator="{ props }">
 						<v-btn
@@ -36,13 +35,20 @@
 										<p class="lesson_user_info">Название урока</p>
 										<p type="text"> {{ eventTitle }} </p>
 									</v-col>
-
 									<v-col
 											cols="12"
 											sm="6"
 											md="10"
 									>
-										<p class="lesson_user_info">Описание урока</p>
+										<p class="lesson_user_info">Тема урока</p>
+										<p>{{eventTheme}}</p>
+									</v-col>
+									<v-col
+											cols="12"
+											sm="6"
+											md="10"
+									>
+										<p class="lesson_user_info">Домашнее задание</p>
 										<p>{{eventDescription}}</p>
 									</v-col>
 									<v-col
@@ -128,6 +134,7 @@ export default {
 			eventId: '',
 			eventTitle: '',
 			eventDate: '',
+			eventTheme: '',
 			eventStart: '',
 			eventEnd: '',
 			eventBack: '',
@@ -137,7 +144,7 @@ export default {
 			eventTeacher: '',
       options: {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
-				initialView: 'timeGridWeek',
+				initialView: 'timeGridDay',
 				slotLabelFormat: {
 					hour: 'numeric',
 					minute: '2-digit',
@@ -151,9 +158,14 @@ export default {
 				editable: false,
 				selectable: true,
 				aspectRatio: 1,
-				height: window.screen.height-300,
+				// height: window.screen.height-300,
 				contentHeight: 700,
 				weekends: true,
+				headerToolbar: {
+					start: 'title', // will normally be on the left. if RTL, will be on the right
+					center: '',
+					end: 'timeGridWeek timeGridDay today prev,next' // will normally be on the right. if RTL, will be on the left
+				},
 				firstDay: '1',
 				timeZone: 'UTC',
 				events: INITIAL_EVENTS,
@@ -213,9 +225,12 @@ export default {
 	border-radius: 10px;
 	border-color: white;
 }
-#elem1 {
-
+#elem1_calendar {
+	padding:25px;
+	font-size:15px;
+	height:80vh;
 }
+
 #elem2 {
 		width: 100%;
 		height: 100%;

@@ -12,7 +12,7 @@ type Config struct {
 
 func New() *Config {
 	return &Config{
-		Port: "8008",
+		Port: ":5671",
 		Host: "localhost",
 	}
 }

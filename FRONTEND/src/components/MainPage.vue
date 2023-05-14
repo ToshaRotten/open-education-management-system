@@ -1,20 +1,5 @@
 <template>
-    <router-view></router-view>
-<!--  <header>-->
-<!--      <div class="navigation">-->
-<!--          <div class="third-nav">-->
-<!--              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door-exit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>-->
-<!--                  <path d="M13 12v.01m-10 8.99h18m-16 0v-16a2 2 0 0 1 2 -2h7.5m2.5 10.5v7.5m-3 -14h7m-3 -3l3 3l-3 3"></path>-->
-<!--               </svg>-->
-<!--              <a class="" @click="logout">Выйти</a>-->
-<!--          </div>-->
-<!--          <div class="second-nav">-->
-<!--              <p class="" style="font-size:26px;">Главная</p>-->
-<!--          </div>-->
-<!--      </div>-->
-<!--  </header>-->
-
+    <router-view/>
   <div class="main">
       <div class="main-block">
           <img @click="$router.push('/')" src="../assets/img/Logotype.png">
@@ -58,27 +43,40 @@
 
       </div>
         <div class="alternative-block">
-            <SchedulePage/>
-
+            <div style="display:flex; float:left;">
+                <SchedulePage/>
+            </div>
+            <div class="last-marks">
+                <p class="Rubik-Regular" style="font-size: 22px;">Последние оценки</p> <hr>
+                <div class="grade" :id = "grade.grade" v-for="grade in lastGrades" :key="grade">
+                    <p style="font-size: 12px;"> {{ grade.lesson }}</p>
+                    <p style="font-size: 25px;"> {{ grade.grade }}</p>
+                    <p style="font-size: 12px;"> {{ grade.date }}</p>
+                </div>
+            </div>
         </div>
+
   </div>
   
 </template>
+
 <script>
 import SchedulePage from './modules/SchedulePage.vue'
+
 export default {
   name: 'MainPage',
   data () {
       return {
           firstName: this.$store.getters.loadData.firstName,
           lastName: this.$store.getters.loadData.lastName,
+          lastGrades: []
       }
   },
   components: {
     'SchedulePage': SchedulePage
   },
-  computed: {
-
+  created() {
+      this.getGrades()
   },
   methods: {
     logout: function () {
@@ -86,11 +84,47 @@ export default {
         this.$store.commit('logout')
         console.log(this.$store.state.user)
         this.$router.push('/auth')
-    }
+    },
+      getGrades: function () {
+          let grades = [
+              {
+                  date: '24.05.2023',
+                  lesson: 'Русский язык',
+                  grade: '5'
+              },
+              {
+                  date: '22.05.2023',
+                  lesson: 'Математика',
+                  grade: '2'
+              },
+              {
+                  date: '22.05.2023',
+                  lesson: 'Математика',
+                  grade: '4'
+              },
+              {
+                  date: '22.05.2023',
+                  lesson: 'Математика',
+                  grade: '3'
+              }
+          ]
+          this.lastGrades = grades
+      },
+      colorizeGrads:function () {
+          let grads = document.getElementsByClassName('grade')
+          for(let i = 0; i < grads.length; i++) {
+              if (grads[i].id == '5') grads[i].classList.add('mG')
+              else if (grads[i].id == '4') grads[i].classList.add('mLG')
+              else if (grads[i].id == '3') grads[i].classList.add('mY')
+              else if (grads[i].id == '2') grads[i].classList.add('mR')
+              else grads[i].classList.add('mR')
+          }
+      }
   },
-  created: function(){
+    mounted() {
 
-  }
+      this.colorizeGrads()
+    }
 }
 </script>
 <style>
@@ -101,6 +135,28 @@ export default {
     background-color: white;
     border-radius: 15px;
   box-shadow: 0 2px 4px black;
+    width:40vw;
+}
+.last-marks {
+    display:inline-block;
+    border-style: solid;
+    border-radius: 15px;
+    width: 30%;
+    border-width: 0px;
+    padding:15px;
+    background-color: white;
+    filter: drop-shadow(0px 1px 4px #3c3c3c);
+}
+.grade {
+    border-radius: 15px;
+    border-style: solid;
+    background-color: #0A8CFF;
+    color: white;
+    width:20%;
+    display: inline-block;
+}
+.grade p {
+    margin: 0;
 }
 @import url("../assets/css/style.css");
 </style>

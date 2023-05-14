@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="alternative-block">
-            <v-table style="text-align:left;">
+            <v-table class="journal-table">
                 <thead>
                 <tr>
                     <th v-for="name in headers" :key="name">
@@ -106,7 +106,21 @@ export default {
                 sum = sum + arr[i]
             }
             return (sum / arr.length).toFixed(2)
+        },
+        colorizeGrads:function () {
+            let grads = document.getElementsByClassName('graduate')
+            console.log(grads)
+            for(let i = 0; i < grads.length; i++) {
+                if (grads[i].innerText == '5') grads[i].classList.add('mG')
+                else if (grads[i].innerText == '4') grads[i].classList.add('mLG')
+                else if (grads[i].innerText == '3') grads[i].classList.add('mY')
+                else if (grads[i].innerText == '2') grads[i].classList.add('mR')
+                else grads[i].classList.add('mR')
+            }
         }
+    },
+    mounted() {
+        this.colorizeGrads()
     }
 }
 </script>
@@ -121,5 +135,24 @@ export default {
     background-color: #9dd1ff;
     color: white;
     padding: 0px 5px 0px 5px;
+    border-radius: 7px;
+}
+.journal-table {
+    text-align:left;
+    border-radius: 5px;
+    height:100%;
+    filter:drop-shadow(0px 0px 2px black);
+}
+.mG {
+    background-color: #01e230;
+}
+.mLG {
+    background-color: #01e230;
+}
+.mY {
+    background-color: #e2af00;
+}
+.mR {
+    background-color: #e2210b;
 }
 </style>
