@@ -2,10 +2,10 @@ package UserManager
 
 import (
 	"fmt"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/buffer"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/database"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/logger"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/models"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/buffer"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/database"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/logger"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
 	"regexp"
 )
 
@@ -27,8 +27,13 @@ func New() *UserManager {
 
 // SyncWithDb - starts a synchronization process, when UserManager send a buffer data to DATABASE_SERVICE
 func (u *UserManager) SyncWithDb() {
-	u.logger.ManagerLog("Starting sync process")
+	u.logger.ManagerLog("Sync with db")
+}
 
+// InitManager - Gets users from db and create buffer
+func (u *UserManager) InitManager() {
+	usersFromDb, _ := u.database.ReadAll()
+	u.buffer.Create(usersFromDb)
 }
 
 // SetInterval - sets a interval of sending buffer data to database service

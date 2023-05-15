@@ -7,8 +7,8 @@ import (
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/buffer"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/config"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/utils"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/configurator_http_client"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"io"
@@ -17,7 +17,7 @@ import (
 )
 
 type APIServer struct {
-	Config *config.Config
+	Config *configurator_http_client.Config
 	Logger *logrus.Logger
 	Buffer *buffer.Buffer
 	Router *mux.Router
@@ -26,7 +26,7 @@ type APIServer struct {
 
 func New() *APIServer {
 	var s APIServer
-	s.Config = config.New()
+	s.Config = configurator_http_client.NewConfig()
 	s.Logger = logrus.New()
 	s.Router = mux.NewRouter()
 	s.Buffer = buffer.New()
@@ -34,7 +34,7 @@ func New() *APIServer {
 	return &s
 }
 
-func (s *APIServer) Start(config *config.Config) error {
+func (s *APIServer) Start(config *configurator_http_client.Config) error {
 	s.Config = config
 	err := s.configureLogger()
 	if err != nil {
@@ -44,7 +44,7 @@ func (s *APIServer) Start(config *config.Config) error {
 	s.configureRouter()
 	s.configureFileHelper()
 	s.Logger.Info("Server is started ...")
-	s.Logger.Info("Bind addr: http://", s.Config.Host+s.Config.Port)
+	s.Logger.Info("Server bind addr: http://", s.Config.Host+s.Config.Port)
 	err = http.ListenAndServe(s.Config.Host+s.Config.Port, s.Router)
 	if err != nil {
 		s.Logger.Error(err)
@@ -149,7 +149,7 @@ func (s *APIServer) auth() http.HandlerFunc {
 		if valid {
 			foundedUsers := s.Users.ReadUsers(userData.Users)
 			if len(foundedUsers) > 1 {
-				s.Logger.Error(errors.New("Хана"))
+				s.Logger.Error(errors.New("Error auth"))
 			} else {
 				if foundedUsers[0].Hash == userData.Users[0].Hash {
 					marshaled, _ := json.Marshal(&userData.Users[0])

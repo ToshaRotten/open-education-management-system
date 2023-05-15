@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/models"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
 	"testing"
 )
 
@@ -48,6 +48,12 @@ var (
 func TestDBController_Create(t *testing.T) {
 	d := New()
 	d.Create(testUser2)
+}
+
+func TestDBController_ReadAll(t *testing.T) {
+	d := New()
+	users, _ := d.ReadAll()
+	fmt.Println(users)
 }
 
 func TestDBController_Read(t *testing.T) {

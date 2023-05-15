@@ -1,6 +1,6 @@
 package buffer
 
-import "github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/models"
+import "github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
 
 func remove(slice []models.User, s models.User) []models.User {
 	return append(slice[:s.ID], slice[s.ID+1:]...)

@@ -8,3 +8,14 @@ type Config struct {
 	Scheme      string `json:"scheme" yaml:"scheme"`
 	BufferSize  int    `json:"buffer_size" yaml:"buffer_size"`
 }
+
+func NewConfig() *Config {
+	return &Config{
+		Id:          0,
+		ServiceName: "",
+		Host:        "",
+		Port:        "",
+		Scheme:      "",
+		BufferSize:  0,
+	}
+}

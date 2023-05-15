@@ -3,8 +3,8 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/database/logger"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/server/UserManager/models"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/database/logger"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -33,6 +33,38 @@ func (d *DBController) Create(user models.User) {
 		d.log.Error(err.Error())
 	}
 	defer d.db.Close()
+}
+
+func (d *DBController) ReadAll() ([]models.User, int) {
+	var err error
+	var resultUsers []models.User
+	var temp models.User
+	d.db, err = sql.Open("sqlite3", "test.db")
+	if err != nil {
+		d.log.Error(err.Error())
+	}
+	defer d.db.Close()
+
+	reqSql := fmt.Sprintf("SELECT * FROM users")
+
+	rows, err := d.db.Query(reqSql, nil)
+	if err != nil {
+		d.log.Error(err.Error())
+	}
+
+	if rows != nil {
+		for rows.Next() {
+			err = rows.Scan(&temp.ID, &temp.LastName, &temp.FirstName, &temp.ThirdName, &temp.DOB,
+				&temp.Phone, &temp.Email, &temp.Hash, &temp.Role)
+			if err != nil {
+				d.log.Error(err.Error())
+			}
+			resultUsers = append(resultUsers, temp)
+		}
+	}
+
+	defer d.db.Close()
+	return resultUsers, len(resultUsers)
 }
 
 func (d *DBController) Read(users []models.User) ([]models.User, int) {
