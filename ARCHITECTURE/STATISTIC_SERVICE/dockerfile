@@ -1,0 +1,11 @@
+FROM golang
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod tidy -v && \
+    CGO_ENABLED=0 go build -o STATISTIC_SERVICE \
+    ./.
+
+ENTRYPOINT ["/app/STATISTIC_SERVICE"]

@@ -48,7 +48,7 @@ func main() {
 		logger.Info("Set a default config")
 	}
 
-	config.Host = "localhost"
+	config.Host = "185.21.142.92"
 	config.Port = ":9906"
 
 	server := auth_http_server.New()

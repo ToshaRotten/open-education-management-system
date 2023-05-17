@@ -24,7 +24,7 @@ func New() *Server {
 
 func (s *Server) Start() {
 	s.configureRouter()
-	err := http.ListenAndServe(":9908", s.Router)
+	err := http.ListenAndServe("185.21.142.92:9908", s.Router)
 	if err != nil {
 		fmt.Println("ListenAndServe error: ", err)
 	}
