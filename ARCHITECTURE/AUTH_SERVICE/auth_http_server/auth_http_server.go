@@ -166,9 +166,13 @@ func (s *APIServer) auth() http.HandlerFunc {
 
 func (s *APIServer) register() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		//userData, err := utils.ParseUsersFromJSON(r)
-		//if err != nil {
-		//	s.Logger.Error(err)
-		//}
+		userData, err := utils.ParseUsersFromJSON(r)
+		if err != nil {
+			s.Logger.Error(err)
+		}
+		valid := s.Users.ValidateUsers(userData.Users)
+		if valid {
+			w.WriteHeader(http.StatusCreated)
+		}
 	})
 }
