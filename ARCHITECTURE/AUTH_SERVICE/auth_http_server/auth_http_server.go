@@ -96,6 +96,15 @@ func (s *APIServer) configureRouter() {
 
 func (s *APIServer) create() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Create request")
 		usersData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
@@ -113,6 +122,15 @@ func (s *APIServer) create() http.HandlerFunc {
 
 func (s *APIServer) read() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Read request")
 		usersData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
@@ -132,6 +150,15 @@ func (s *APIServer) read() http.HandlerFunc {
 
 func (s *APIServer) update() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Update request")
 		var update struct {
 			OldUserData []models.User `json:"oldUsersData"`
@@ -154,6 +181,15 @@ func (s *APIServer) update() http.HandlerFunc {
 
 func (s *APIServer) delete() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Delete request")
 		usersData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
@@ -166,6 +202,15 @@ func (s *APIServer) delete() http.HandlerFunc {
 
 func (s *APIServer) auth() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Auth request")
 		userData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
@@ -195,6 +240,15 @@ func (s *APIServer) auth() http.HandlerFunc {
 
 func (s *APIServer) register() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(204)
+			return
+		}
 		s.TGLog.SendLog("Register request")
 		userData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
