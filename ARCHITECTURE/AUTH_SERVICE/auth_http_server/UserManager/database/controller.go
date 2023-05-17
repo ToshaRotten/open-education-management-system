@@ -15,8 +15,12 @@ type DBController struct {
 }
 
 func New() *DBController {
-	return &DBController{scheme: "test.db",
+	return &DBController{scheme: "database/test.db",
 		db: nil, log: logger.New()}
+}
+
+func (d *DBController) SetScheme(scheme string) {
+	d.scheme = scheme
 }
 
 func (d *DBController) Create(user models.User) {
@@ -25,8 +29,7 @@ func (d *DBController) Create(user models.User) {
 	if err != nil {
 		d.log.Error(err.Error())
 	}
-	reqSql := fmt.Sprintf("INSERT INTO users (lastname,firstname,thirdname,DOB,phone,email,hash,role) VALUES"+
-		" ('%s', '%s','%s','%s','%s', '%s', '%s', '%s' );", user.LastName, user.FirstName, user.ThirdName, user.DOB,
+	reqSql := fmt.Sprintf("INSERT INTO users (lastname,firstname,thirdname,DOB,phone,email,hash,role) VALUES ('%s', '%s','%s','%s','%s', '%s', '%s', '%s' );", user.LastName, user.FirstName, user.ThirdName, user.DOB,
 		user.Phone, user.Email, user.Hash, user.Role)
 	_, err = d.db.Exec(reqSql)
 	if err != nil {
@@ -39,7 +42,7 @@ func (d *DBController) ReadAll() ([]models.User, int) {
 	var err error
 	var resultUsers []models.User
 	var temp models.User
-	d.db, err = sql.Open("sqlite3", "test.db")
+	d.db, err = sql.Open("sqlite3", d.scheme)
 	if err != nil {
 		d.log.Error(err.Error())
 	}
@@ -71,7 +74,7 @@ func (d *DBController) Read(users []models.User) ([]models.User, int) {
 	var err error
 	var resultUsers []models.User
 	var temp models.User
-	d.db, err = sql.Open("sqlite3", "test.db")
+	d.db, err = sql.Open("sqlite3", d.scheme)
 	if err != nil {
 		d.log.Error(err.Error())
 	}
@@ -99,11 +102,11 @@ func (d *DBController) Read(users []models.User) ([]models.User, int) {
 
 func (d *DBController) Update(old models.User, new models.User) {
 	var err error
-	d.db, err = sql.Open("sqlite3", "test.db")
+	d.db, err = sql.Open("sqlite3", d.scheme)
 	if err != nil {
 		d.log.Error(err.Error())
 	}
-	reqSql := fmt.Sprintf("UPDATE users SET lastname = '%s', firstname = '%s',"+
+	reqSql := fmt.Sprintf("UPDATE users SET lastname = '%s', firstname = '%s'"+
 		"thirdname = '%s', DOB = '%s', phone= '%s', email = '%s', hash = '%s', WHERE email= '%s' AND hash='%s';",
 		new.LastName, new.FirstName, new.ThirdName, new.DOB, new.Phone, new.Email, new.Hash, old.Email, old.Hash)
 	_, err = d.db.Exec(reqSql)
@@ -115,7 +118,7 @@ func (d *DBController) Update(old models.User, new models.User) {
 
 func (d *DBController) Delete(user models.User) {
 	var err error
-	d.db, err = sql.Open("sqlite3", "test.db")
+	d.db, err = sql.Open("sqlite3", d.scheme)
 	if err != nil {
 		d.log.Error(err.Error())
 	}
@@ -129,7 +132,7 @@ func (d *DBController) Delete(user models.User) {
 
 func (d *DBController) DBHealth() {
 	var err error
-	d.db, err = sql.Open("sqlite3", "test.db")
+	d.db, err = sql.Open("sqlite3", d.scheme)
 	if err != nil {
 		d.log.Error(err.Error())
 	}

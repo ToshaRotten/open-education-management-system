@@ -1,8 +1,10 @@
 package UserManager
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/utils"
 	"testing"
 )
 
@@ -46,10 +48,10 @@ var (
 )
 
 func TestCreate(t *testing.T) {
-	manager := New()
+	//manager := New()
 	//manager.CreateUsers([]models.User{testUser})
 
-	fmt.Println(manager.ValidateUsers([]models.User{testUser}))
+	fmt.Println(utils.ValidateUsers([]models.User{testUser}))
 }
 
 func TestUserManager_InitManager(t *testing.T) {
@@ -59,4 +61,9 @@ func TestUserManager_InitManager(t *testing.T) {
 	//manager.database.DBHealth()
 
 	fmt.Println(manager.buffer)
+}
+
+func TestNew(t *testing.T) {
+	data, _ := json.Marshal(testUser)
+	fmt.Println(string(data))
 }

@@ -49,7 +49,7 @@ func main() {
 	}
 
 	config.Host = "localhost"
-	config.Port = ":8080"
+	config.Port = ":9906"
 
 	server := auth_http_server.New()
 	if err := server.Start(&config); err != nil {

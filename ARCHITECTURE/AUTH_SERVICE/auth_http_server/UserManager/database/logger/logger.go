@@ -18,6 +18,7 @@ func (l *DBLogger) Log(message string) {
 	d := color.New(color.FgHiYellow, color.Bold)
 	d.Printf("BASE")
 	fmt.Printf("[%04d] ", l.counter)
+	fmt.Println(message)
 }
 
 func (l *DBLogger) Error(message string) {
@@ -25,4 +26,5 @@ func (l *DBLogger) Error(message string) {
 	d := color.New(color.FgRed, color.Bold)
 	d.Printf("BASE")
 	fmt.Printf("[%04d] ", l.counter)
+	fmt.Println(message)
 }
