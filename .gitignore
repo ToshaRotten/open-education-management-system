@@ -4,4 +4,4 @@
 /ARCHITECTURE/IMAGE_KEEPER_SERVICE/image_keeper/zip_source/*
 /.idea/
 /ARCHITECTURE/SECRET_KEEPER_SERVICE/secret_keeper/secrets/*
-.db
+/ARCHITECTURE/STATISTIC_SERVICE/local.env
