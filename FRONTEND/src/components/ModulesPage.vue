@@ -42,7 +42,7 @@
       </div>
       <div class="alternative-block">
         <div class='chooseText'>
-            <p>Выберите доступный модуль</p>
+            <p style="font-size: 25px;">Выберите доступный модуль</p>
         </div>
         <div>
             <button class='module_list'
@@ -83,12 +83,6 @@ export default {
                     path: '/modules/meet',
                     role: '0'
                 },
-                {
-                    moduleId: '4',
-                    moduleName: 'Что это?',
-                    path: '/modules/journal',
-                    role: '0'
-                },
             ]
         }
     },
@@ -109,13 +103,18 @@ export default {
     border-radius: 30px;
     border-width: 0px;
     border-color: black;
-    filter: drop-shadow(0px 0px 3px black);
+    filter: drop-shadow(0px 0px 3px #83b1ff);
     font-size: 20px;
-    background-color: #FFFFFF;
+    background-color: #83b1ff;
+    color: white;
     width: 15em;
     height: 3em;
     margin-inline: 25px;
     margin-bottom: 2em;
+    transition: all 0.2s ease;
+}
+.module_list:hover {
+    background-color: #a1c4ff;
 }
 .chooseText {
     height:100%;

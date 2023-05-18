@@ -1,4 +1,2 @@
-const apiUrl = "http://localhost:"
-const apiPort = "5671"
-
-export default {apiUrl, apiPort}
+const AUTHSERVICE_URL = "http://185.21.142.92:9906"
+export default {AUTHSERVICE_URL}

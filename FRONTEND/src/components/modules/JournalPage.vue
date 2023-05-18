@@ -94,6 +94,22 @@ export default {
                 {
                     name: "Математика",
                     grades: [5,5]
+                },
+                {
+                    name: "Информатика",
+                    grades: [5,5]
+                },
+                {
+                    name: "Элементы мат. логики",
+                    grades: [5,5,5,4,3,5,2,5,4,"н"]
+                },
+                {
+                    name: "Литература",
+                    grades: [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+                },
+                {
+                    name: "Основы алгоритмизации",
+                    grades: [5,5]
                 }
             ]
         }
@@ -109,6 +125,7 @@ export default {
             let sum = 0;
             for(let i = 0; i < arr.length; i++)
             {
+                if (typeof arr[i] == 'number')
                 sum = sum + arr[i]
             }
             return (sum / arr.length).toFixed(2)

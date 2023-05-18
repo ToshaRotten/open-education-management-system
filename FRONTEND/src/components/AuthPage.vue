@@ -51,12 +51,13 @@ export default {
 		checkAuth() {
 			// let firstName = this.login
 			// let hash = this.pass
-			let user = {users:[
-				{
-					firstName: this.login,
-					hash: this.pass
-				}
-			]}
+			let user = {users: [
+					{
+						email: this.login,
+						hash: this.pass
+					}
+				]
+			}
 			//Auth.login(this.login, this.pass)
 			this.$store.dispatch('login', user)
 		},

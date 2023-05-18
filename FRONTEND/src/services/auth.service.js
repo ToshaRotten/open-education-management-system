@@ -2,12 +2,10 @@ import config from '@/config/config'
 import router from '@/router'
 import axios from 'axios'
 import { useToast } from 'vue-toastification'
-
-const API_URL = config.apiUrl + config.apiPort + '/user/'
 class AuthService {
 	login(firstName, hash) {
 		return axios
-			.post(API_URL + 'read', {
+			.post(config.AUTHSERVICE_URL + '/user/auth', {
 				firstName: firstName,
 				hash: hash,
 			})
@@ -37,7 +35,7 @@ class AuthService {
 			}
 		]}
 		return axios
-			.post(API_URL + 'create', users)
+			.post(config.AUTHSERVICE_URL + '/user/register', users)
 			.then(response => {
 				console.log(response)
 				const toast = useToast()

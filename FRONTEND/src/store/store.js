@@ -5,7 +5,6 @@ import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import { useToast } from 'vue-toastification'
 
-const API_URL = config.apiUrl + config.apiPort
 
 
 export default new Vuex.Store({
@@ -39,7 +38,7 @@ export default new Vuex.Store({
 		login({ commit }, user) {
 			return new Promise((resolve, reject) => {
 				commit('auth_request')
-				axios({ url: API_URL + '/user/read', data: user, method: 'POST' })
+				axios({ url: config.AUTHSERVICE_URL + '/user/read', data: user, method: 'POST' })
 					.then(resp => {
 						const toast = useToast();
 						console.log(resp)

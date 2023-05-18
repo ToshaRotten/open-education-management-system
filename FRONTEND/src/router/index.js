@@ -50,6 +50,7 @@ const routes = [
     name: 'modules',
     component: ModulesPage,
     beforeEnter: ifAuthenticated,
+    meta: { transition: 'slide-left' },
   },
   {
     name: 'generate',

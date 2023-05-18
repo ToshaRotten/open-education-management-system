@@ -173,7 +173,7 @@ export default {
     background-color: white;
     border-radius: 15px;
   box-shadow: 0 2px 4px black;
-    width:40vw;
+    width:50vw;
 }
 .last-marks {
     display:inline-block;

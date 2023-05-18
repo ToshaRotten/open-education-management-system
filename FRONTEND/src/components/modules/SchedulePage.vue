@@ -2,7 +2,7 @@
 
 	<div style="position: relative;">
 
-		<FullCalendar ref="fullCalendar" v-if="userRole==0" id="elem1_calendar" :options="options" class="schedule-block"/>
+		<FullCalendar ref="fullCalendar" v-if="userRole=='developer'" id="elem1_calendar" :options="options" class="schedule-block"/>
 		<template id="elem2">
 			<v-row justify="center">
 				<v-dialog
@@ -39,14 +39,16 @@
 											cols="12"
 											sm="6"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
 										<p class="lesson_user_info">Тема урока</p>
-										<p>{{eventTheme}}</p>
+										<p>{{eventTopic}}</p>
 									</v-col>
 									<v-col
 											cols="12"
 											sm="6"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
 										<p class="lesson_user_info">Домашнее задание</p>
 										<p>{{eventDescription}}</p>
@@ -55,6 +57,7 @@
 											cols="12"
 											sm="6"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
 										<p class="lesson_user_info">Дата</p>
 										<p> {{eventDate}} с {{eventStart}} до {{eventEnd}}</p>
@@ -63,6 +66,7 @@
 											cols="12"
 											sm="6"
 											md="10"
+											style="padding-bottom: 0px;"
 									>
 										<p class="lesson_user_info">Класс</p>
 										<p> {{eventClass}}</p>
@@ -119,7 +123,8 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import FullCalendar from '@fullcalendar/vue3'
-import {INITIAL_EVENTS} from "./events";
+// import axios from "axios";
+import {INITIAL_EVENTS} from "@/components/modules/events";
 
 export default {
   components: {
@@ -134,7 +139,7 @@ export default {
 			eventId: '',
 			eventTitle: '',
 			eventDate: '',
-			eventTheme: '',
+			eventTopic: '',
 			eventStart: '',
 			eventEnd: '',
 			eventBack: '',
@@ -144,7 +149,7 @@ export default {
 			eventTeacher: '',
       options: {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
-				initialView: 'timeGridDay',
+				initialView: 'timeGridWeek',
 				slotLabelFormat: {
 					hour: 'numeric',
 					minute: '2-digit',
@@ -169,21 +174,31 @@ export default {
 				firstDay: '1',
 				timeZone: 'UTC',
 				events: INITIAL_EVENTS,
+				eventDidMount: function(info) {
+					let t = info.el
+					t.style.wordWrap = "break-word"
+					let d = t.querySelector('.fc-event-title-container')
+					let teacher = info.event.extendedProps.teacher
+					teacher = teacher.split(' ')
+					let shortTeacher = teacher[0]+" "+teacher[1][0]+"."+teacher[2][0]+"."
+					d.innerHTML += "<div class='fc-event-title fc-sticky'>" + shortTeacher + "</div>"
+					let m = t.querySelector('.fc-event-title')
+					m.style.fontWeight = "bold"
+				},
 				eventClick: (info) => {
 					this.edit = true
 					this.eventTitle= info.event.title
-					console.log(info.event.start.toISOString())
 					this.eventDate = info.event.start.toISOString().split("T")[0]
 					let tempStart = info.event.start.toISOString().split("T")[1].split(".")[0]
 					this.eventStart= tempStart.substring(0,tempStart.length-3)
-					console.log(this.eventStart)
 					let tempEnd = info.event.end.toISOString().split("T")[1].split(".")[0]
 					this.eventBack = info.event.start.toISOString().split("T")[1].split(".")[1]
 					this.eventEnd = tempEnd.substring(0, tempEnd.length-3)
 					this.eventClass = info.event.extendedProps.class
-					this.eventDescription = info.event.extendedProps.description
+					this.eventDescription = info.event.extendedProps.homework
 					this.eventTeacher = info.event.extendedProps.teacher
 					this.eventId = info.event.id
+					this.eventTopic = info.event.extendedProps.topic
 				},
 				eventReceive: (info) => {
 					// info.event.setProp('id', this.events.length)
@@ -203,8 +218,22 @@ export default {
     }
   },
   methods: {
-
+		// getAllEvents: function () {
+		// 	let events
+		// 		axios.post('http://localhost:9909/' + '/schedule/read')
+		// 				.then(resp => {
+		// 					console.log(resp)
+		// 					events = resp.data
+		// 				})
+		// 				.catch(err => {
+		// 					console.log(err)
+		// 				})
+		// 	return events
+		// }
   },
+	mounted() {
+
+	}
 
 }
 </script>

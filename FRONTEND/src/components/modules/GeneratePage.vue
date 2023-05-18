@@ -94,6 +94,7 @@
                                                 cols="12"
                                                 sm="12"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Название урока</p>
 <!--                                                <input-->
@@ -106,11 +107,23 @@
                                                     <option v-for="lesson in lessons" :key="lesson"> {{lesson.title}}</option>
                                                 </select>
                                             </v-col>
-
                                             <v-col
                                                 cols="12"
                                                 sm="6"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
+                                            >
+                                                <p class="lesson_info">Тема урока</p>
+                                                <input
+                                                    v-model="eventTopic"
+                                                    placeholder="Тема урока"
+                                                >
+                                            </v-col>
+                                            <v-col
+                                                cols="12"
+                                                sm="6"
+                                                md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Описание урока</p>
                                                 <input
@@ -121,6 +134,7 @@
                                             <v-col
                                                 cols="12"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Начало урока</p>
                                                 <input
@@ -154,6 +168,7 @@
                                                 cols="12"
                                                 sm="6"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Выбор педагога</p>
                                                 <select style="width:100%;" v-model="eventTeacher">
@@ -164,6 +179,7 @@
                                                 cols="12"
                                                 sm="6"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Выбор класса</p>
                                                 <select style="width:100%;" v-model="eventClass">
@@ -175,6 +191,7 @@
                                                 cols="12"
                                                 sm="6"
                                                 md="10"
+                                                style="padding-bottom: 0px;"
                                             >
                                                 <p class="lesson_info">Выбор цвета</p>
                                                 <input
@@ -233,8 +250,8 @@ import interactionPlugin, { Draggable } from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import FullCalendar from '@fullcalendar/vue3'
-import {INITIAL_EVENTS} from "./events";
 import { useToast } from "vue-toastification"
+import {INITIAL_EVENTS} from "@/components/modules/events";
 
 export default {
     components: {
@@ -274,6 +291,24 @@ export default {
                         "description": "",
                         "teacher": ""
                     }
+                },
+                {
+                    "title": "Информатика",
+                    "duration": "00:45:00",
+                    "backgroundColor": "#3FBAFF",
+                    "extendedProps": {
+                        "description": "",
+                        "teacher": ""
+                    }
+                },
+                {
+                    "title": "Астрономия",
+                    "duration": "00:45:00",
+                    "backgroundColor": "#3FBAFF",
+                    "extendedProps": {
+                        "description": "",
+                        "teacher": ""
+                    }
                 }
             ],
             teachers: [
@@ -305,6 +340,7 @@ export default {
             eventEnd: '',
             eventBack: '',
             eventClass: '',
+            eventTopic: '',
             eventColor: '#5ba8ff',
             eventDescription: '',
             options: {
@@ -338,8 +374,9 @@ export default {
                     this.eventEnd = tempEnd.substring(0, tempEnd.length-3)
                     this.eventClass = info.event.extendedProps.class
                     this.eventTeacher = info.event.extendedProps.teacher
-                    this.eventDescription = info.event.extendedProps.description
+                    this.eventDescription = info.event.extendedProps.homework
                     this.eventId = info.event.id
+                    this.eventTopic = info.event.extendedProps.topic
                     console.log(this.eventId)
                 },
                 eventReceive: (info) => {
@@ -387,8 +424,10 @@ export default {
             event.setExtendedProp('description', this.eventDescription)
             event.setExtendedProp('teacher', this.eventTeacher)
             event.setExtendedProp('class', this.eventClass)
+            event.setExtendedProp('topic', this.eventTopic)
             this.edit=false
             this.toast.success("Урок успешно изменён!")
+            this.updateEvents()
         },
         deleteEvent: function() {
             let calendarApi = this.$refs.fullCalendar.getApi()
@@ -405,10 +444,34 @@ export default {
                     eventData: array[i]
                 });
             }
-        }
+        },
+        // getAllEvents: function () {
+        //     let events
+        //     axios.post('http://185.21.142.92:9909' + '/schedule/read')
+        //         .then(resp => {
+        //             console.log(resp)
+        //             events = resp.data
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //         })
+        //     return events
+        // },
+        // updateEvents: function () {
+        //     let calendarApi = this.$refs.fullCalendar.getApi()
+        //     let events = calendarApi.getEvents()
+        //     axios.post('http://185.21.142.92:9909' +'/schedule/create', events)
+        //         .then(resp => {
+        //             console.log(resp)
+        //         })
+        //         .catch(err => {
+        //             console.log(err)
+        //         })
+        // }
     },
     mounted() {
         this.makeDraggable()
+        // this.getAllEvents()
     },
     created() {
 
