@@ -1,18 +1,19 @@
 import config from '@/config/config'
 import router from '@/router'
 import axios from 'axios'
-
-const API_URL = config.apiUrl + config.apiPort + '/user/'
+import { useToast } from 'vue-toastification'
 class AuthService {
 	login(firstName, hash) {
 		return axios
-			.post(API_URL + 'auth', {
+			.post(config.AUTHSERVICE_URL + '/user/auth', {
 				firstName: firstName,
 				hash: hash,
 			})
 			.then(response => {
-				const token = response.data.token
-				localStorage.setItem('user-token', token)
+				this.$toast.success("Всё топ")
+				const user = response.data.token
+				// const token = response.data.user
+				localStorage.setItem('user', user)
 				router.push(`/dashboard`)
 			})
 			.catch(err => {
@@ -20,8 +21,9 @@ class AuthService {
 			})
 	}
 	register(firstName, lastName, thirdName, phone, email, DOB, role, hash) {
-		return axios
-			.post(API_URL + 'register', {
+		
+		let users = {users:[
+			{
 				firstName: firstName,
 				lastName: lastName,
 				thirdName: thirdName,
@@ -29,11 +31,20 @@ class AuthService {
 				email: email,
 				DOB: DOB,
 				role: role,
-				hash: hash,
+				hash: hash
+			}
+		]}
+		return axios
+			.post(config.AUTHSERVICE_URL + '/user/register', users)
+			.then(response => {
+				console.log(response)
+				const toast = useToast()
+				toast.success("Вы успешно зарегистрировались!", {timeout: 2000})
+				router.push('/auth')
 			})
-			.then(() => {})
 			.catch(err => {
-				console.log(err.response)
+				const toast = useToast()
+				toast.error(err.message, {timeout: 2000})
 			})
 	}
 }

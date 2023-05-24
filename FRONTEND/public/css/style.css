@@ -1422,10 +1422,11 @@ h3 {
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-  height: 100vh;
+  height: 90vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+
 }
 
 @media (max-width: 767px) {
@@ -1575,9 +1576,8 @@ h3 {
 /* line 105, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area .ilstration_img {
   position: absolute;
-  right: 0;
-  bottom: 15%;
-  right: 7%;
+  bottom: 10%;
+  right: 10%;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {

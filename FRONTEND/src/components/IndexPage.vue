@@ -36,7 +36,7 @@
                                 <div class="Appointment">
 
                                     <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3 Rubik" @click="$router.push('/auth')">Войти</a>
+                                        <a class="boxed-btn3 Rubik" @click="auth">Войти</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="row align-items-center">
                                 <div class="col-xl-3 col-lg-6 sldier_btn wow fadeInLeft" data-wow-duration="1s"
                                     data-wow-delay=".5s">
-                                    <a @click="$router.push('/auth')" class="boxed-btn4">Войти</a>
+                                    <a @click="auth" class="boxed-btn4">Войти</a>
                                 </div>
                                 <div class="col-xl-3 col-lg-6 sldier_btn wow fadeInLeft" data-wow-duration="1s"
                                     data-wow-delay=".5s">
@@ -77,17 +77,24 @@
         </div>
         <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s"
             data-wow-delay=".2s">
-            <img src="img/table.png" alt="">
+            <img src="../../public/img/table.png" alt="">
         </div>
     </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
     name: 'IndexPage',
     props: {},
     computed: {},
-    methods: {},
+    methods: {
+        auth: function () {
+            if (this.$store.getters.isAuthenticated) router.push('/dashboard')
+            else router.push('/auth')
+        }
+    }
 };
 </script>
 
