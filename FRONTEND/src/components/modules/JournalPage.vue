@@ -41,7 +41,9 @@
             </div>
         </div>
         <div class="alternative-block">
+            <p style="font-size:22px;">Ваши отметки за текущий месяц</p>
             <v-table class="journal-table">
+
                 <thead>
                 <tr>
                     <th v-for="name in headers" :key="name">
@@ -161,6 +163,7 @@ export default {
     border-radius: 7px;
 }
 .journal-table {
+    padding:25px;
     text-align:left;
     border-radius: 5px;
     height:100%;

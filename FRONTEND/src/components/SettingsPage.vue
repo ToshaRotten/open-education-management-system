@@ -43,15 +43,14 @@
         <div class="alternative-block">
             <div class="back_settings">
                 <div class="settings">
+                    <p style="font-size: 25px;">Личные данные</p>
                     <v-text-field label="Имя" variant="solo" v-model="user.firstName" clearable></v-text-field>
-                    <v-text-field label="Фамилия" variant="solo" v-model="user.lastName"></v-text-field>
-                    <v-text-field label="Отчество" variant="solo" v-model="user.thirdName"></v-text-field>
-                    <v-text-field :rules="[rules.required, rules.email]" label="Почта" variant="solo" v-model="user.email"></v-text-field>
-                    <v-text-field type="date" label="Дата рождения" variant="solo" v-model="user.DOB"></v-text-field>
-                    <v-text-field v-mask="['+# (###)-###-##-##']" type="tel" label="Телефон" variant="solo" v-model="user.phone"></v-text-field>
+                    <v-text-field label="Фамилия" variant="solo" v-model="user.lastName" clearable></v-text-field>
+                    <v-text-field label="Отчество" variant="solo" v-model="user.thirdName" clearable></v-text-field>
+                    <v-text-field type="date" label="Дата рождения" variant="solo" v-model="user.DOB" clearable></v-text-field>
+
                     <v-btn @click="submitSettings" class="text-none text-subtitle-1" color="#83b1ff" variant="flat" style="color:white;">СОХРАНИТЬ</v-btn>
                 </div>
-
             </div>
             <div class="navigation_settings">
                 <div @click="$router.push('/settings')" class="nav_setting selected_nav_setting">Аккаунт и личная информация</div>
@@ -65,17 +64,23 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
+
 import axios from "axios";
 import config from '../config/config'
 export default {
     name: "SettingsPage",
-    directives:{mask},
     data(){
         return {
             firstName: this.$store.getters.loadData.firstName,
             lastName: this.$store.getters.loadData.lastName,
-            user: this.$store.getters.loadData,
+            user: {
+                firstName: this.$store.getters.loadData.firstName,
+                lastName:this.$store.getters.loadData.lastName,
+                thirdName:this.$store.getters.loadData.thirdName,
+                phone: this.$store.getters.loadData.phone,
+                email: this.$store.getters.loadData.email,
+                DOB: this.$store.getters.loadData.DOB
+            },
             rules: {
                 required: value => !!value || 'Это поле обязательно',
                 email: value => {
@@ -103,18 +108,24 @@ export default {
 </script>
 
 <style>
+.v-text-field input {
+    padding: 8px 15px 0px !important;
+}
 .settings{
     text-align: center;
     margin: 0 auto;
-    width:60%;
-    padding: 50px;
+    width:100%;
+    padding: 20px 20px 50px 20px;
 }
 .back_settings {
     background-color: #ffffff;
-    width: 60%;
+    width: 30vw;
+    margin-bottom: 20px;
     border-radius: 7px;
     display: inline-flex;
     filter: drop-shadow(0px 0px 3px #a4a4a4);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .navigation_settings {
     float:right;
@@ -124,13 +135,16 @@ export default {
     border-style:solid;
     border-width: 1px;
     border-radius:14px;
+    background-color: white;
+    margin-right:50px;
 }
 .nav_setting {
     margin-bottom:4%;
-    padding: 5px 0 5px 1em;
+    padding: 8px 0 8px 1em;
     border-width: 1px;
     border-radius:14px;
     margin:5px;
+
     cursor:pointer;
     transition: 0.15s;
 }

@@ -44,11 +44,17 @@
         <div style="width: 50%; margin: 0 auto;">
             <v-text-field
                 v-model="search"
-                append-icon="mdi-magnify"
                 label="Поиск по имени"
                 single-line
                 hide-details
-            ></v-text-field>
+            >
+
+                <template v-slot:append-inner>
+                    <v-fade-transition leave-absolute>
+                        <v-icon icon="mdi-magnify"></v-icon>
+                    </v-fade-transition>
+                </template>
+            </v-text-field>
             <v-data-table
                 v-model:items-per-page="itemsPerPage"
                 v-model:page="page"
@@ -76,8 +82,7 @@
             <v-row justify="center">
                 <v-dialog
                     v-model="edit"
-                    persistent
-                    width="600"
+                    width="auto"
                 >
                     <template v-slot:activator="{ props }">
                         <v-btn
@@ -335,6 +340,12 @@ export default {
                 .then(response => {
                     console.log(response)
                 })
+        },
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
         }
     }
 }

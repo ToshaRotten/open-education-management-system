@@ -18,8 +18,8 @@
             lang="ru"
             :userInfo="user"
             :interface-config-overwrite="config"
-            @on-ready-to-close="() => { console.log('Ready to close') }"
             :config-overwrite="{prejoinPageEnabled: false, disableProfile: true, whiteboard: {enabled: true, collabServerBaseUrl: 'https://excalidraw-backend.example.com'}}"
+            @on-ready-to-close="babe"
         />
 
 </template>

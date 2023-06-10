@@ -82,6 +82,7 @@ export const INITIAL_EVENTS = [
 		title: 'Астрономия',
 		start: '2023-06-18T13:45',
 		end: '2023-06-18T14:30',
+		daysOfWeek: ['4'],
 		backgroundColor: '#5ba8ff',
 		extendedProps: {
 			homework: 'Изучение дробей',

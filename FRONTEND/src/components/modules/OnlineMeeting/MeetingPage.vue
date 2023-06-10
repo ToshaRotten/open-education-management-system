@@ -68,10 +68,18 @@ export default {
                     title: 'Русский язык'
                 },
                 {
-                    roomId: '2',
+                    roomId: 'Математика_28.04.23',
                     title: 'Математика'
                 },
             ]
+        }
+    },
+    methods: {
+        logout: function () {
+            console.log(this.$store.state.user)
+            this.$store.commit('logout')
+            console.log(this.$store.state.user)
+            this.$router.push('/auth')
         }
     }
 }

@@ -7,7 +7,6 @@
 			<v-row justify="center">
 				<v-dialog
 						v-model="edit"
-						persistent
 						width="600"
 				>
 					<template v-slot:activator="{ props }">

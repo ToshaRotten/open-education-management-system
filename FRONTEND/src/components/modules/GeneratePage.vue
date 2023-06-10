@@ -72,7 +72,6 @@
                     <v-row justify="center">
                         <v-dialog
                             v-model="edit"
-                            persistent
                             width="600"
                             height="1000"
                         >

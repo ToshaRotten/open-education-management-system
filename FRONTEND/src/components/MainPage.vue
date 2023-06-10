@@ -160,8 +160,8 @@ export default {
       }
   },
     mounted() {
-
-      this.colorizeGrads()
+      this.colorizeGrads();
+      console.log(this.$store.state.user)
     }
 }
 </script>

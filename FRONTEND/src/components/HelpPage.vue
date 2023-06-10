@@ -95,8 +95,11 @@ export default {
             this.$router.push('/auth')
         },
         helpClick: function () {
-            const toast = useToast()
-            toast.success("Заявка об ошибке успешно отправлена!", {timeout: 2000})
+            setTimeout(() => {
+                const toast = useToast()
+                toast.success("Заявка об ошибке успешно отправлена!", {timeout: 2000})
+            }, 2000);
+
         }
     }
 }
