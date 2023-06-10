@@ -90,7 +90,7 @@
 						<v-card-actions style="text-align: center">
 							<v-spacer></v-spacer>
 							<v-btn
-									v-if="userRole==0"
+									v-if="userRole==1"
 									style="margin: 0 auto;"
 									color="cyan-darken-2"
 									variant="elevated"
@@ -105,7 +105,7 @@
 									variant="elevated"
 									@click="edit = false"
 							>
-								Сохранить и закрыть
+								Закрыть
 							</v-btn>
 						</v-card-actions>
 					</v-card>

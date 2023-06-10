@@ -59,8 +59,10 @@
         <div class="alternative-block">
             <div>
                 <div class='lessons_list'>
+
                     <div class='drag' v-for="lesson in lessons" :key='lesson'>
-                        {{ lesson.title}}
+                        <v-icon icon="mdi-drag-variant"></v-icon>
+                            {{ lesson.title}}
                     </div>
                 </div>
             </div>
@@ -268,7 +270,7 @@ export default {
                 {
                     "title": "Пустой урок",
                     "duration": "00:45:00",
-                    "backgroundColor": "#ffc14d",
+                    "backgroundColor": "#de4dff",
                     "extendedProps": {
                         "description": "",
                         "teacher": this.firstName + this.lastName
@@ -295,7 +297,7 @@ export default {
                 {
                     "title": "Информатика",
                     "duration": "00:45:00",
-                    "backgroundColor": "#3FBAFF",
+                    "backgroundColor": "#653fff",
                     "extendedProps": {
                         "description": "",
                         "teacher": ""
@@ -304,7 +306,7 @@ export default {
                 {
                     "title": "Астрономия",
                     "duration": "00:45:00",
-                    "backgroundColor": "#3FBAFF",
+                    "backgroundColor": "#ff8c3f",
                     "extendedProps": {
                         "description": "",
                         "teacher": ""

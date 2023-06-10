@@ -68,7 +68,6 @@ export default new Vuex.Store({
 			return state.user
 		},
 		isAuthenticated(state) {
-			console.log(state.user)
 			if (Object.entries(state.user).length === 0) {
 				return false
 			}

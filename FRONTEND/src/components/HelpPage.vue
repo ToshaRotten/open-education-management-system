@@ -47,17 +47,17 @@
                     <v-card-title>
                         <span class="text-h5">Оставить заявку об ошибке</span>
                     </v-card-title>
-                    <v-textarea label="Имя" variant="solo" :model-value="firstName" auto-grow rows="1"></v-textarea>
-                    <v-textarea rows="1" label="Фамилия" variant="solo" :model-value="lastName" auto-grow></v-textarea>
-                    <v-textarea no-resize label="Описание проблемы" rows="3" variant="solo"></v-textarea>
-                    <div class="help_button">
+                    <v-text-field label="Имя" variant="solo" :model-value="firstName" readonly="readonly" ></v-text-field>
+                    <v-text-field label="Фамилия" variant="solo" :model-value="lastName" readonly="readonly" ></v-text-field>
+                    <v-text-field :rules="[rules.required]" no-resize label="Описание проблемы" variant="solo"></v-text-field>
+                    <div class="help_button" @click="helpClick">
                         Отправить
                     </div>
                 </div>
             </div>
             <div class="contacts">
                 <div class="contacts_info">
-                    <p class="Rubik-Regular" style="font-size: 25px; color: black;">Наши контакты</p>
+                    <p class="Rubik-Regular" style="font-size: 25px; color: black;">Наши контакты </p>
                     <p class="Rubik-Medium" style="font-size: 40px; color: black;">8 800 111-11-11</p>
                     <p class="Rubik-Regular" style="font-size: 25px; color: black;">help@romanton.ru</p>
                     <p class="Rubik" style="color: black;">По общим вопросам (в будни с<br />7:00 до 18:00 по московскому времени)</p>
@@ -75,12 +75,16 @@
 </template>
 
 <script>
+import { useToast } from 'vue-toastification'
 export default {
     name: "HelpPage",
     data(){
         return {
             firstName: this.$store.getters.loadData.firstName,
             lastName: this.$store.getters.loadData.lastName,
+            rules: {
+                required: value => !!value || 'Это поле обязательно',
+            },
         }
     },
     methods: {
@@ -89,6 +93,10 @@ export default {
             this.$store.commit('logout')
             console.log(this.$store.state.user)
             this.$router.push('/auth')
+        },
+        helpClick: function () {
+            const toast = useToast()
+            toast.success("Заявка об ошибке успешно отправлена!", {timeout: 2000})
         }
     }
 }
@@ -128,6 +136,12 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: 0.4s;
+}
+.help_button:hover {
+    background-color: #83b1ff;
+    color:white;
+    transition: 0.4s;
 }
 .contacts {
     display: inline-flex;

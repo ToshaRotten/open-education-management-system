@@ -11,6 +11,9 @@ import SettingsPage from "@/components/SettingsPage.vue";
 import MeetingPage from "@/components/modules/OnlineMeeting/MeetingPage.vue";
 import ConversationPage from "@/components/modules/OnlineMeeting/ConversationPage.vue";
 import store from '@/store/store'
+import GiveGradesPage from "@/components/modules/GiveGradesPage.vue";
+import EditUsersPage from "@/components/EditUsersPage.vue";
+import SecurityPage from "@/components/navigation_settings/SecurityPage.vue";
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
@@ -46,6 +49,12 @@ const routes = [
     beforeEnter: ifAuthenticated,
   },
   {
+    path: '/settings/security',
+    name: 'settings/security',
+    component: SecurityPage,
+    beforeEnter: ifAuthenticated,
+  },
+  {
     path: '/modules',
     name: 'modules',
     component: ModulesPage,
@@ -68,6 +77,18 @@ const routes = [
     name: 'meet',
     path: '/modules/meet',
     component: MeetingPage,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    name: 'grades',
+    path: '/modules/grades',
+    component: GiveGradesPage,
+    beforeEnter: ifAuthenticated,
+  },
+  {
+    name: 'editUser',
+    path: '/modules/editusers',
+    component: EditUsersPage,
     beforeEnter: ifAuthenticated,
   },
   {

@@ -42,13 +42,14 @@
       </div>
       <div class="alternative-block">
         <div class='chooseText'>
-            <p style="font-size: 25px;">Выберите доступный модуль</p>
+            <p style="font-size: 25px; padding-right:120px;">Выберите доступный модуль</p>
         </div>
-        <div>
+        <div style="width:70vw;">
             <button class='module_list'
                     v-for='module in modules'
                     :key='module'
                     @click="$router.push(module.path)" style="cursor:pointer;">
+                <v-icon :icon="module.moduleIcon"></v-icon>
                {{ module.moduleName }}
             </button>
         </div>
@@ -68,19 +69,36 @@ export default {
                 {
                     moduleId: '1',
                     moduleName: 'Расписание',
+                    moduleIcon: 'mdi-calendar-arrow-right',
                     path: '/modules/generate',
                     role: '0'
                 },
                 {
                     moduleId: '2',
                     moduleName: 'Дневник',
+                    moduleIcon: 'mdi-notebook',
                     path: '/modules/journal',
                     role: '0'
                 },
                 {
                     moduleId: '3',
                     moduleName: 'Онлайн встреча',
+                    moduleIcon: 'mdi-monitor-account',
                     path: '/modules/meet',
+                    role: '0'
+                },
+                {
+                    moduleId: '4',
+                    moduleName: 'Выставление оценок',
+                    moduleIcon: 'mdi-school',
+                    path: '/modules/grades',
+                    role: '0'
+                },
+                {
+                    moduleId: '5',
+                    moduleName: 'Пользователи',
+                    moduleIcon: 'mdi-account-group',
+                    path: '/modules/editusers',
                     role: '0'
                 },
             ]

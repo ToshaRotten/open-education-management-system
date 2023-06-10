@@ -1,9 +1,9 @@
 <template>
     <div class="main">
         <div class="main-block">
-            <img @click="$router.push('/')" src="../assets/img/Logotype.png">
+            <img @click="$router.push('/')" src="../../assets/img/Logotype.png">
             <div class="profile">
-                <img src="../assets/img/ava.png">
+                <img src="../../assets/img/ava.png">
                 <p class="profile">{{ firstName }} {{ lastName }}</p>
             </div>
             <div class="modules">
@@ -43,19 +43,16 @@
         <div class="alternative-block">
             <div class="back_settings">
                 <div class="settings">
-                    <v-text-field label="Имя" variant="solo" v-model="user.firstName" clearable></v-text-field>
-                    <v-text-field label="Фамилия" variant="solo" v-model="user.lastName"></v-text-field>
-                    <v-text-field label="Отчество" variant="solo" v-model="user.thirdName"></v-text-field>
-                    <v-text-field :rules="[rules.required, rules.email]" label="Почта" variant="solo" v-model="user.email"></v-text-field>
-                    <v-text-field type="date" label="Дата рождения" variant="solo" v-model="user.DOB"></v-text-field>
-                    <v-text-field v-mask="['+# (###)-###-##-##']" type="tel" label="Телефон" variant="solo" v-model="user.phone"></v-text-field>
-                    <v-btn @click="submitSettings" class="text-none text-subtitle-1" color="#83b1ff" variant="flat" style="color:white;">СОХРАНИТЬ</v-btn>
+                    <v-text-field label="Имя" variant="solo" :model-value="firstName" clearable></v-text-field>
+
+
+                    <v-btn class="text-none text-subtitle-1" color="#83b1ff" variant="flat" style="color:white;">СОХРАНИТЬ</v-btn>
                 </div>
 
             </div>
             <div class="navigation_settings">
-                <div @click="$router.push('/settings')" class="nav_setting selected_nav_setting">Аккаунт и личная информация</div>
-                <div @click="$router.push('/settings/security')" class="nav_setting">Безопасность</div>
+                <div @click="$router.push('/settings')" class="nav_setting">Аккаунт и личная информация</div>
+                <div class="nav_setting selected_nav_setting">Безопасность</div>
                 <div @click="$router.push('/settings/notifications')" class="nav_setting">Уведомления</div>
             </div>
 
@@ -65,24 +62,12 @@
 </template>
 
 <script>
-import {mask} from 'vue-the-mask'
-import axios from "axios";
-import config from '../config/config'
 export default {
-    name: "SettingsPage",
-    directives:{mask},
-    data(){
+    name: "SecurityPage",
+    data() {
         return {
             firstName: this.$store.getters.loadData.firstName,
             lastName: this.$store.getters.loadData.lastName,
-            user: this.$store.getters.loadData,
-            rules: {
-                required: value => !!value || 'Это поле обязательно',
-                email: value => {
-                    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    return pattern.test(value) || 'Введите верный e-mail.'
-                },
-            },
         }
     },
     methods: {
@@ -92,55 +77,10 @@ export default {
             console.log(this.$store.state.user)
             this.$router.push('/auth')
         },
-        submitSettings: function () {
-            axios.post(config.AUTHSERVICE_URL+'/user/update', this.user)
-                .then(response => {
-                    console.log(response)
-                })
-        }
     }
 }
 </script>
 
-<style>
-.settings{
-    text-align: center;
-    margin: 0 auto;
-    width:60%;
-    padding: 50px;
-}
-.back_settings {
-    background-color: #ffffff;
-    width: 60%;
-    border-radius: 7px;
-    display: inline-flex;
-    filter: drop-shadow(0px 0px 3px #a4a4a4);
-}
-.navigation_settings {
-    float:right;
-    font-size:16px;
-    width:30%;
-    text-align:left;
-    border-style:solid;
-    border-width: 1px;
-    border-radius:14px;
-}
-.nav_setting {
-    margin-bottom:4%;
-    padding: 5px 0 5px 1em;
-    border-width: 1px;
-    border-radius:14px;
-    margin:5px;
-    cursor:pointer;
-    transition: 0.15s;
-}
-.nav_setting:hover {
-    background-color:#83b1ff;
-    color:white;
-    transition: 0.15s;
-}
-.selected_nav_setting {
-    background-color:#83b1ff;
-    color:white;
-}
+<style scoped>
+
 </style>
