@@ -4,6 +4,8 @@ WORKDIR /app/statistic_service
 
 COPY . .
 
+EXPOSE 9908
+
 RUN go mod tidy -v && \
     CGO_ENABLED=0 go build -o STATISTIC_SERVICE \
     ./.

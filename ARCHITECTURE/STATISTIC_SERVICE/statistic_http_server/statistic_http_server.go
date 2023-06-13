@@ -8,6 +8,7 @@ import (
 	"main/statistic_http_server/models"
 	"main/statistic_http_server/telegram"
 	"net/http"
+	"os"
 )
 
 type Server struct {
@@ -24,7 +25,7 @@ func New() *Server {
 
 func (s *Server) Start() {
 	s.configureRouter()
-	err := http.ListenAndServe("185.21.142.92:9908", s.Router)
+	err := http.ListenAndServe(os.Getenv("ADDR")+":9908", s.Router)
 	if err != nil {
 		fmt.Println("ListenAndServe error: ", err)
 	}

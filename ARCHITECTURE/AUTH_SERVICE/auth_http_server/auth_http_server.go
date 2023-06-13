@@ -47,6 +47,9 @@ func (s *APIServer) Start(config *configurator_http_client.Config) error {
 	s.configureRouter()
 	s.configureFileHelper()
 	s.Logger.Info("Server is started ...")
+	if os.Getenv("ADDR") != "" {
+		s.Config.Host = os.Getenv("ADDR")
+	}
 	s.Logger.Info("Server bind addr: http://", s.Config.Host+s.Config.Port)
 	s.TGLog.SendLog("Server is started")
 	err = http.ListenAndServe(s.Config.Host+s.Config.Port, s.Router)
