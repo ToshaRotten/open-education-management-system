@@ -67,7 +67,7 @@ func (s *APIServer) configureUserManager() {
 func (s *APIServer) configureLogger() error {
 	s.Logger = &logrus.Logger{
 		Out:   os.Stderr,
-		Level: logrus.WarnLevel,
+		Level: logrus.DebugLevel,
 		Formatter: &logrus.TextFormatter{
 			ForceColors: true,
 			ForceQuote:  true,
@@ -78,7 +78,6 @@ func (s *APIServer) configureLogger() error {
 }
 
 func (s *APIServer) configureFileHelper() {
-
 }
 
 // configureRouter ..
