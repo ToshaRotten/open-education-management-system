@@ -1,32 +1,35 @@
-package configurator_http_server
+package configurator_http_client
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/CONFIGURATOR_SERVICE/configurator/models"
 	"io"
 	"net/http"
 	"testing"
 )
 
-func TestSearchAvailablePort(t *testing.T) {
-	port := SearchAvailablePort()
-	fmt.Println(port)
+func TestClient_CheckService(t *testing.T) {
+	cli := New()
+	if cli.CheckConfigurator() {
+		fmt.Println("available")
+	} else {
+		fmt.Println("not available")
+	}
 }
 
-func TestSearchIP(t *testing.T) {
-	SearchIP()
-}
-
-func TestServer_Start(t *testing.T) {
-	serv := New()
-	serv.Start()
+func TestClient_GetConfig(t *testing.T) {
+	cli := New()
+	conf, err := cli.GetConfig("ROOT_SERVICE")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(conf)
 }
 
 func TestServer_GetConfig(t *testing.T) {
 	cli := http.Client{}
-	conf := models.Config{
+	conf := Config{
 		Id:          0,
 		ServiceName: "AUTH_SERVICE",
 		Host:        "",
@@ -38,6 +41,7 @@ func TestServer_GetConfig(t *testing.T) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(string(data))
 	req, err := http.NewRequest("GET", "http://localhost:8000/config", bytes.NewReader(data))
 	if err != nil {
 		fmt.Println(err)

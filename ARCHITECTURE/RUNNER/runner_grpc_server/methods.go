@@ -1,9 +1,8 @@
-package runner_http_server
+package runner_grpc_server
 
 import (
 	"context"
-	"main/ServiceController/service"
-	pb2 "main/runner_server/proto/pb"
+	pb2 "github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/RUNNER/runner_grpc_server/proto/pb"
 )
 
 type RunnerServer struct {
@@ -11,7 +10,7 @@ type RunnerServer struct {
 }
 
 func (s *RunnerServer) RunService(ctx context.Context, in *pb2.RunRequest) (*pb2.RunResponse, error) {
-	ServiceNamesToStart := in.GetServiceNames()
-	var ServicesToStart []service.Service
+	//ServiceNamesToStart := in.GetServiceNames()
+	//var ServicesToStart []service.Service
 	return nil, nil
 }

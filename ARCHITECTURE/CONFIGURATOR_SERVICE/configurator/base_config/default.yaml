@@ -2,34 +2,34 @@ configs:
   - id: 0
     service_name: "AUTH_SERVICE"
     port: ":8079"
-    host: "localhost"
+    host: "185.21.142.92"
     scheme: "test"
     buffer_size: 50
 
   - id: 1
     service_name: "ROOT_SERVICE"
     port: ":8081"
-    host: "localhost"
+    host: "185.21.142.92"
     scheme: "test"
 
   - id: 2
     service_name: "SECRET_KEEPER_SERVICE"
     port: ":8083"
-    host: "localhost"
+    host: "185.21.142.92"
     scheme: "test"
 
   - id: 3
     service_name: "IMAGE_KEEPER_SERVICE"
     port: ":8085"
-    host: "localhost"
+    host: "185.21.142.92"
     scheme: "test"
 
   - id: 4
     service_name: "STATISTIC_SERVICE"
     port: ":8087"
-    host: "localhost"
+    host: "185.21.142.92"
 
   - id: 5
     service_name: "RUNNER"
     port: ":8089"
-    host: "localhost"
+    host: "185.21.142.92"

@@ -125,9 +125,10 @@ func (g *GithubClient) DownloadSourceCode() {
 	}
 	defer resp.Body.Close()
 
-	filename := fmt.Sprintf("../source/zip/source_%s.zip", g.latestVersion)
+	filename := fmt.Sprintf("../data/source_data/zip/source_%s.zip", g.latestVersion)
 
 	err = createFile(filename, resp.Body)
+
 	if err != nil {
 		fmt.Println("Error downloading file:", err)
 	}

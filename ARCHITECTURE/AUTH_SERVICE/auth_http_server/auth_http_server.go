@@ -3,7 +3,6 @@ package auth_http_server
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/buffer"
 	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/AUTH_SERVICE/auth_http_server/UserManager/models"
@@ -52,7 +51,6 @@ func (s *APIServer) Start(config *configurator_http_client.Config) error {
 	s.TGLog.SendLog("Server is started")
 	err = http.ListenAndServe(s.Config.Host+s.Config.Port, s.Router)
 	if err != nil {
-		s.Logger.Error(err)
 		return err
 	}
 	return nil
@@ -66,14 +64,12 @@ func (s *APIServer) configureUserManager() {
 func (s *APIServer) configureLogger() error {
 	s.Logger = &logrus.Logger{
 		Out:   os.Stderr,
-		Level: logrus.DebugLevel,
+		Level: logrus.WarnLevel,
 		Formatter: &logrus.TextFormatter{
 			ForceColors: true,
 			ForceQuote:  true,
 		},
 	}
-
-	s.Logger.SetLevel(logrus.Level(6))
 	s.Logger.Trace("Logger ...")
 	return nil
 }
@@ -131,16 +127,17 @@ func (s *APIServer) read() http.HandlerFunc {
 			w.WriteHeader(204)
 			return
 		}
-		s.TGLog.SendLog("Read request")
 		usersData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
 			s.Logger.Error(err)
 		}
+
 		users := s.Users.ReadUsers(usersData.Users)
 		response, err := json.Marshal(users)
 		if err != nil {
 			s.Logger.Error(err)
 		}
+		s.TGLog.SendLog("Read request, written data to client:" + string(response))
 		_, err = w.Write(response)
 		if err != nil {
 			s.Logger.Error(err)
@@ -159,14 +156,12 @@ func (s *APIServer) update() http.HandlerFunc {
 			w.WriteHeader(204)
 			return
 		}
-		s.TGLog.SendLog("Update request")
 		var update struct {
 			OldUserData []models.User `json:"oldUsersData"`
 			NewUserData []models.User `json:"newUsersData"`
 		}
 		data, err := io.ReadAll(r.Body)
 
-		fmt.Println(string(data))
 		if err != nil {
 			s.Logger.Error(err)
 		}
@@ -174,8 +169,8 @@ func (s *APIServer) update() http.HandlerFunc {
 		if err != nil {
 			s.Logger.Error(err)
 		}
+		s.TGLog.SendLog("Update request, data:" + string(data))
 		s.Users.UpdateUsers(update.OldUserData, update.NewUserData)
-		s.TGLog.SendLog("User is updated")
 	})
 }
 
@@ -190,7 +185,8 @@ func (s *APIServer) delete() http.HandlerFunc {
 			w.WriteHeader(204)
 			return
 		}
-		s.TGLog.SendLog("Delete request")
+		requestData, _ := io.ReadAll(r.Body)
+		s.TGLog.SendLog("Delete user request. request data: " + string(requestData))
 		usersData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
 			s.Logger.Error(err)
@@ -211,7 +207,8 @@ func (s *APIServer) auth() http.HandlerFunc {
 			w.WriteHeader(204)
 			return
 		}
-		s.TGLog.SendLog("Auth request")
+		requestData, _ := io.ReadAll(r.Body)
+		s.TGLog.SendLog("Auth request, request data: " + string(requestData))
 		userData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
 			s.Logger.Error(err)
@@ -221,7 +218,7 @@ func (s *APIServer) auth() http.HandlerFunc {
 			foundedUsers := s.Users.ReadUsers(userData.Users)
 			if len(foundedUsers) > 1 {
 				s.Logger.Error(errors.New("Error auth"))
-				s.TGLog.SendLog("Wrong input")
+				s.TGLog.SendLog("Auth request: wrong input")
 			} else {
 				if (foundedUsers[0].Hash == userData.Users[0].Hash) &&
 					(foundedUsers[0].Email == userData.Users[0].Email) {
@@ -233,7 +230,7 @@ func (s *APIServer) auth() http.HandlerFunc {
 			}
 		} else {
 			w.WriteHeader(http.StatusNotAcceptable)
-			s.TGLog.SendLog("User invalid")
+			s.TGLog.SendLog("Auth request: user invalid")
 		}
 	})
 }
@@ -249,7 +246,8 @@ func (s *APIServer) register() http.HandlerFunc {
 			w.WriteHeader(204)
 			return
 		}
-		s.TGLog.SendLog("Register request")
+		requestData, _ := io.ReadAll(r.Body)
+		s.TGLog.SendLog("Register request, request data: " + string(requestData))
 		userData, err := utils.ParseUsersFromJSON(r)
 		if err != nil {
 			s.Logger.Error(err)
@@ -262,7 +260,7 @@ func (s *APIServer) register() http.HandlerFunc {
 				w.WriteHeader(http.StatusNotAcceptable)
 			}
 			w.WriteHeader(http.StatusCreated)
-			s.TGLog.SendLog("User created")
+			s.TGLog.SendLog("Register request: user created")
 		}
 	})
 }

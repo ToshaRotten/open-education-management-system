@@ -1,10 +1,11 @@
 package configurator
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestConfig_ParseFile(t *testing.T) {
-	//configs := ParseFile("base_config/default.yaml")
-	//fmt.Println(configs)
+	c := New("base_config/default.yaml")
+	fmt.Println(c.Buffer)
 }

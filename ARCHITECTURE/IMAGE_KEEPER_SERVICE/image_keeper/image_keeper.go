@@ -8,9 +8,9 @@ type ImageKeeper struct {
 
 func New() *ImageKeeper {
 	var k ImageKeeper
-	k.DockerImagesPath = "complete_data/docker_images"
-	k.CompleteRepoPath = "complete_data/repo"
-	k.ZipSourcePath = "zip_source/"
+	k.DockerImagesPath = "../data/complete_data/docker_images/"
+	k.CompleteRepoPath = "../data/complete_data/repo/"
+	k.ZipSourcePath = "../data/source_data/zip/"
 	return &k
 }
 

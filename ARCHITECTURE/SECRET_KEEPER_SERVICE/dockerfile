@@ -1,6 +1,6 @@
 FROM golang
 
-WORKDIR /app
+WORKDIR /app/seecret_keeper_service
 
 COPY . .
 
@@ -8,4 +8,4 @@ RUN go mod tidy -v && \
     CGO_ENABLED=0 go build -o SECRET_KEEPER_SERVICE \
     ./.
 
-ENTRYPOINT ["/app/SECRET_KEEPER_SERVICEE"]
+ENTRYPOINT ["/app/seecret_keeper_service/SECRET_KEEPER_SERVICEE"]

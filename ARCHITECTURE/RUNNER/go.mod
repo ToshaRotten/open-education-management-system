@@ -1,4 +1,4 @@
-module main
+module github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/RUNNER
 
 go 1.18
 

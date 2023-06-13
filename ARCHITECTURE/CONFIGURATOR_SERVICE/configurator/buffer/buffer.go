@@ -2,12 +2,13 @@ package buffer
 
 import (
 	"fmt"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/CONFIGURATOR_SERVICE/configurator/models"
 	"github.com/go-yaml/yaml"
 	"io/ioutil"
 )
 
 type Buffer struct {
-	Configs []Config `json:"configs" yaml:"configs"`
+	Configs []models.Config `json:"configs" yaml:"configs"`
 }
 
 func New() *Buffer {
@@ -29,13 +30,13 @@ func CreateBufferFromConfigFile(path string) *Buffer {
 	return &b
 }
 
-func (b *Buffer) SetBuffer(configs []Config) {
+func (b *Buffer) SetBuffer(configs []models.Config) {
 	for _, config := range configs {
 		b.Configs = append(b.Configs, config)
 	}
 }
 
-func (b *Buffer) GetService(serviceNameOrID interface{}) Config {
+func (b *Buffer) GetService(serviceNameOrID interface{}) models.Config {
 	switch serviceNameOrID.(type) {
 	case string:
 		for _, config := range b.Configs {
@@ -52,10 +53,10 @@ func (b *Buffer) GetService(serviceNameOrID interface{}) Config {
 	default:
 		fmt.Println("Type error")
 	}
-	return Config{}
+	return models.Config{}
 }
 
-func (b *Buffer) SetService(serviceNameOrID interface{}, newConfig Config) {
+func (b *Buffer) SetService(serviceNameOrID interface{}, newConfig models.Config) {
 	switch serviceNameOrID.(type) {
 	case string:
 		for i, config := range b.Configs {

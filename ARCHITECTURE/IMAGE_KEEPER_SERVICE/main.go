@@ -1,1 +1,7 @@
-package IMAGE_KEEPER_SERVICE
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("It works")
+}

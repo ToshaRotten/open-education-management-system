@@ -1,6 +1,6 @@
 FROM golang
 
-WORKDIR /app
+WORKDIR /app/statistic_service
 
 COPY . .
 
@@ -8,4 +8,4 @@ RUN go mod tidy -v && \
     CGO_ENABLED=0 go build -o STATISTIC_SERVICE \
     ./.
 
-ENTRYPOINT ["/app/STATISTIC_SERVICE"]
+ENTRYPOINT ["/app/statistic_service/STATISTIC_SERVICE"]

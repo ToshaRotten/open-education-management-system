@@ -1,4 +1,4 @@
-package buffer
+package models
 
 type Config struct {
 	Id          int    `json:"id" yaml:"id"`
@@ -7,4 +7,7 @@ type Config struct {
 	Port        string `json:"port" yaml:"port"`
 	Scheme      string `json:"scheme" yaml:"scheme"`
 	BufferSize  int    `json:"buffer_size" yaml:"buffer_size"`
+}
+type Configs struct {
+	Configs []Config `json:"configs" yaml:"configs"`
 }

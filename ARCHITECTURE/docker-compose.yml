@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  STATISTIC_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8087:8087"
+    build:
+      context: ./STATISTIC_SERVICE/
+      dockerfile: dockerfile
+
+  CONFIGURATOR_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    build:
+      context: ./CONFIGURATOR_SERVICE/
+      dockerfile: dockerfile
+
+  AUTH_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8079:8079"
+    build:
+      context: ./AUTH_SERVICE/
+      dockerfile: dockerfile
+
+  IMAGE_KEEPER_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8085:8085"
+    build:
+      context: .
+
+  ROOT_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    build:
+      context: .
+
+  SEECRET_KEEPER_SERVICE:
+    image: golang
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    build:
+      context: .

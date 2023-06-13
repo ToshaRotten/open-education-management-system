@@ -2,6 +2,7 @@ package buffer
 
 import (
 	"fmt"
+	"github.com/ToshaRotten/open-education-management-system/ARCHITECTURE/CONFIGURATOR_SERVICE/configurator/models"
 	"testing"
 )
 
@@ -23,7 +24,7 @@ func TestBuffer_SetService(t *testing.T) {
 	b := CreateBufferFromConfigFile(defaultPath)
 	b.DebugPrint()
 
-	b.SetService(2, Config{
+	b.SetService(2, models.Config{
 		Id:          2,
 		ServiceName: "NewName",
 		Host:        "",

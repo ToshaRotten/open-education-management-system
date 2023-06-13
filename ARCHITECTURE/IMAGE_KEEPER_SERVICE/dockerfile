@@ -1,11 +1,11 @@
 FROM golang
 
-WORKDIR /app
+WORKDIR /app/image_keeper_service
 
 COPY . .
 
 RUN go mod tidy -v && \
-    CGO_ENABLED=0 go build -o AUTH_SERVICE \
+    CGO_ENABLED=0 go build -o IMAGE_KEEPER_SERVICE \
     ./.
 
-ENTRYPOINT ["/app/AUTH_SERVICE"]
+ENTRYPOINT ["/app/image_keeper_service/IMAGE_KEEPER_SERVICE"]

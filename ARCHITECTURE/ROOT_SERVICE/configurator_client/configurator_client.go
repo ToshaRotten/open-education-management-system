@@ -1,1 +1,0 @@
-package configurator_client

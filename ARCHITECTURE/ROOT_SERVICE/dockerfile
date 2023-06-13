@@ -1,11 +1,11 @@
 FROM golang
 
-WORKDIR /app
+WORKDIR /app/root_service
 
 COPY . .
 
 RUN go mod tidy -v && \
-    CGO_ENABLED=0 go build -o AUTH_SERVICE \
+    CGO_ENABLED=0 go build -o ROOT_SERVICE \
     ./.
 
-ENTRYPOINT ["/app/AUTH_SERVICE"]
+ENTRYPOINT ["/app/root_service/ROOT_SERVICE"]
