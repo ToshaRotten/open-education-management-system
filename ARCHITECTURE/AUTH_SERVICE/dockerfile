@@ -6,8 +6,6 @@ COPY . .
 
 EXPOSE 8079
 
-RUN export ADDR=$ADDR
-
 RUN go mod tidy -v && \
     go build -o AUTH_SERVICE \
     ./.

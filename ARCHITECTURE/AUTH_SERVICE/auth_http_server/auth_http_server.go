@@ -50,9 +50,9 @@ func (s *APIServer) Start(config *configurator_http_client.Config) error {
 	if os.Getenv("ADDR") != "" {
 		s.Config.Host = os.Getenv("ADDR")
 	}
-	s.Logger.Info("Server bind addr: http://", s.Config.Host+s.Config.Port)
+	s.Logger.Info("Server bind addr: http://127.0.0.1:8079")
 	s.TGLog.SendLog("Server is started")
-	err = http.ListenAndServe("185.21.142.92:8079", s.Router)
+	err = http.ListenAndServe("127.0.0.1:8079", s.Router)
 	if err != nil {
 		return err
 	}
