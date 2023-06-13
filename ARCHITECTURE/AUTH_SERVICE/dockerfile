@@ -7,7 +7,7 @@ COPY . .
 EXPOSE 8079
 
 RUN go mod tidy -v && \
-    CGO_ENABLED=0 go build -o AUTH_SERVICE \
+    go build -o AUTH_SERVICE \
     ./.
 
 ENTRYPOINT ["/app/auth_service/AUTH_SERVICE"]
